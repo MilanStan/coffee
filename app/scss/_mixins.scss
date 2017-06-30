@@ -5,3 +5,10 @@
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
 }
+@mixin title(){
+    text-align:center;
+        color: white;
+        text-shadow: 0 0 15px black;
+        font-weight:bold;
+        text-transform:uppercase;
+}

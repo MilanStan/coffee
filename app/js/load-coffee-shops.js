@@ -1,40 +1,28 @@
 //Global variables
 
 var caffees;
+var intro=document.getElementById("intro");
 var output = document.getElementById("content-wrapper");
 
 
 $(document).ready(function () {
     geoFindMe();
-
-    $("#dugme1").click(function () {
-        sortCoffees("Distance");
-    });
-    $("#dugme2").click(function () {
-        sortCoffees("Price");
-    });
-    $("#dugme3").click(function () {
-        location.reload();
-    });
 });
 
 //Get user location
 function geoFindMe() {
     if (!navigator.geolocation) {
-        output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
+        intro.append("<p>Geolocation is not supported by your browser</p>");
         return;
     }
 
     navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
-
-    output.innerHTML = "<p>Locating…</p>";
-
 }
 function geoSuccess(position) {
     var latitude = position.coords.latitude;
     var longitude = position.coords.longitude;
 
-    output.innerHTML = '<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>';
+    //intro.innerHTML = '<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>';
     loadCoffees(buildUrl(latitude, longitude));
 
     /*
@@ -48,16 +36,21 @@ function geoSuccess(position) {
 function geoError(error) {
     switch (error.code) {
         case error.PERMISSION_DENIED:
-            output.innerHTML = "User denied the request for Geolocation."
+            intro.innerHTML = '<p>You denied the request for Geolocation.<br>'+
+            'You must accept the request for geolocation in order to app work.</p>'+
+            '<button id="reload" class="button input-lg">Reload</button>';
+            $("#reload").on('click',function () {
+                location.reload();
+            });
             break;
         case error.POSITION_UNAVAILABLE:
-            output.innerHTML = "Location information is unavailable."
+            intro.innerHTML = "<p>Location information is unavailable.</p>"
             break;
         case error.TIMEOUT:
-            output.innerHTML = "The request to get user location timed out."
+            intro.innerHTML = "<p>The request to get user location timed out.</p>"
             break;
         case error.UNKNOWN_ERROR:
-            output.innerHTML = "An unknown error occurred."
+            intro.innerHTML = "<p>An unknown error occurred.</p>"
             break;
     }
 }

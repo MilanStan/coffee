@@ -15,11 +15,13 @@
         <div id="intro">
             <h1>My Coffee Shop</h1>
             <h2>Find the nearest coffee shop and relax</h2>
+            <p>Locating...</p>
         </div>
     </header>
     <section class="main-content-wrapper">
-        <div class="sort-option container text-center">
-            Sort by: 
+        <h2 class="list">List of the nearest coffee shops</h2>
+        <div class="sort-wrapper container text-center">
+            <span>Sort by: </span>
             <select id="sort-criteria" class="input-lg">
                 <option value="Distance">Distance</option>
                 <option value="Price">Price</option>
@@ -27,24 +29,11 @@
         </div>
         <div class="container main-items-wrapper">
             <div class="row" id="content-wrapper">
-                <div class="col-md-6">
-                    <div class="row item-row">
-                        <div class="col-sm-4 image-container">
-
-                        </div>
-                        <div class="col-sm-8 data-container">
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6"></div>
+                
             </div>
         </div>
     </section>
-    <div id="show-data"></div>
-    <button id="dugme1">Distance</button>
-    <button id="dugme2">Price</button>
-    <button id="dugme3">Omogući lokaciju</button>
+      
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>

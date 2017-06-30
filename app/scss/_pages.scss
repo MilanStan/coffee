@@ -4,18 +4,37 @@ header{
     position:relative;
     #intro{
         @include vertical-align();
-    }
-    h1,h2{
         text-align:center;
-        color: white;
-        text-shadow: 0 0 15px black;
-        font-weight:bold;
+    }
+    h1,h2,p{
+        @include title();
     }
     h1{
-        text-transform: uppercase;
-        font-size: 40px;
+        font-size: 50px;
+        margin-bottom:20px;
+    }
+    p{
+        font-size:30px;
+        margin: 20px 0;
+        padding: 0 50px;
+        text-transform: none;
+    }
+    #reload{
+        background-color: darkred;
+        border: 2px solid white;
+        color: white;
+        transition:0.5s;
+        text-transform:uppercase;
+        &:hover{
+            background-color: white;
+            color:darkred;
+        }
     }
 
+}
+.list{
+    @include title();
+    margin-top:30px;
 }
 .main-content-wrapper{
     background:url(../img/coffee-bg.jpg) no-repeat right bottom;
@@ -35,6 +54,12 @@ header{
     padding: 0 15px 0 30px;
     border-top:1px dotted brown;
     transition: 0.5s;
+    a{
+        color: rgb(72,28,22);
+        &:hover{
+            text-decoration: none;
+        }
+    }
     &:hover{
         background-position: 95% 90%;
     }
@@ -43,33 +68,6 @@ header{
         box-shadow: 0 0 15px black;
     }
 }
-
-.item-content{
-    margin: 30px 0;
-}
-.image-container{
-    padding:0;
-}
-.data-container p{
-    font-size: 16px;
-}
-p.name{
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size:18px;
-}
-.image-container img{
-    transform: scale(0.8) rotate(-2deg);
-    border: 7px solid white;
-    box-shadow: 0 0 5px brown;
-    transition: 0.5s;
-}
-#content-wrapper{
-    padding: 20px;
-    position:relative;  
-}
-
-
 .item-wrapper:nth-child(odd){
     border-width: 1px 1px 0 0;
     border-style: dotted;
@@ -82,4 +80,52 @@ p.name{
 }
 .item-wrapper:nth-child(1), .item-wrapper:nth-child(2){
     border-top:none;
+}
+
+.item-content{
+    margin: 30px 0;
+}
+.image-container{
+    padding:0;
+}
+.data-container{
+    padding-top:30px;
+    p{
+        font-size: 16px;
+    }
+    .name{
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size:24px;
+    }
+}
+
+.image-container img{
+    transform: scale(0.8) rotate(-2deg);
+    border: 7px solid white;
+    box-shadow: 0 0 5px brown;
+    transition: 0.5s;
+}
+#content-wrapper{
+    padding: 20px;
+    position:relative;  
+}
+
+.sort-wrapper 
+{
+    margin: 20px auto;
+
+    span{
+    font-size:20px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0 0 10px black;
+    }
+}
+#sort-criteria{
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(0,0 ,0 ,0.7);
+    color: white;
+    font-weight: bold;
 }
