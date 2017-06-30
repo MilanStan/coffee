@@ -4,22 +4,51 @@
 <head>
     <meta charset="UTF-8">
     <title>Coffee</title>
-    <link rel="stylesheet" href="css/main.css">
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+        <link rel="stylesheet" href="css/main.css">
+
 </head>
 
 <body>
+    <header>
+        <div id="intro">
+            <h1>My Coffee Shop</h1>
+            <h2>Find the nearest coffee shop and relax</h2>
+        </div>
+    </header>
+    <section class="main-content-wrapper">
+        <div class="sort-option container text-center">
+            Sort by: 
+            <select id="sort-criteria" class="input-lg">
+                <option value="Distance">Distance</option>
+                <option value="Price">Price</option>
+            </select>
+        </div>
+        <div class="container main-items-wrapper">
+            <div class="row" id="content-wrapper">
+                <div class="col-md-6">
+                    <div class="row item-row">
+                        <div class="col-sm-4 image-container">
+
+                        </div>
+                        <div class="col-sm-8 data-container">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6"></div>
+            </div>
+        </div>
+    </section>
     <div id="show-data"></div>
     <button id="dugme1">Distance</button>
     <button id="dugme2">Price</button>
     <button id="dugme3">Omogući lokaciju</button>
-    <select id="sort-criteria">
-        <option value="Distance">Distance</option>
-        <option value="Price">Price</option>
-    </select>
-    
-    <script src="js/load-coffee-shops.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+        <script src="js/load-coffee-shops.js"></script>
 </body>
 
 </html>

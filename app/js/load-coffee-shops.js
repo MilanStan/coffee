@@ -1,7 +1,7 @@
 //Global variables
 
 var caffees;
-var output = document.getElementById("show-data");
+var output = document.getElementById("content-wrapper");
 
 
 $(document).ready(function () {
@@ -94,10 +94,10 @@ function loadCoffees(url) {
 
             data = response;
             console.log(data);
-           /* console.log(data.response.groups[0].items[0].venue.name);
-            console.log(data.response.groups[0].items[0].venue.contact.phone);
-            console.log("cena: " + data.response.groups[0].items[0].venue.price.tier);
-            console.log("Distance: " + data.response.groups[0].items[0].venue.location.distance);*/
+            /* console.log(data.response.groups[0].items[0].venue.name);
+             console.log(data.response.groups[0].items[0].venue.contact.phone);
+             console.log("cena: " + data.response.groups[0].items[0].venue.price.tier);
+             console.log("Distance: " + data.response.groups[0].items[0].venue.location.distance);*/
 
 
             caffees = response.response.groups[0].items;
@@ -122,32 +122,82 @@ function loadCoffees(url) {
 //Print data
 function printData(data) {
 
-    printContent = "";
+    var printContent = "";
     for (var i = 0; i < data.length; i++) {
-        printContent += '<div class="coffee-item">';
-        printContent += '<p class="name">' + data[i].venue.name + '</p>';
-        printContent += '<p class="address">Address: ' + data[i].venue.location.address + ', ' + data[i].venue.location.city + '</p>';
-        if (data[i].venue.contact.phone) {
-            printContent += '<p class="phone">Phone: ' + data[i].venue.contact.phone + '</p>';
-        }
-        if (data[i].venue.price) {
-            printContent += '<p class="price">Price: ' + data[i].venue.price.tier + '</p>';
-        }
-        printContent += '<p class="distance">Distance: ' + data[i].venue.location.distance + '</p>';
+        printContent +=
+            '<div class="col-md-6 item-wrapper">' +
+            getLinkBeginning() +
+            '<div class="row item-content">' +
+            '<div class="col-sm-5 image-container">' +
+            getImage() +
+            '</div>' +
+            '<div class="col-sm-7 data-container">' +
+            '<p class="name">' + data[i].venue.name + '</p>' +
+            '<p class="address">Address: ' + data[i].venue.location.address + ', ' + data[i].venue.location.city + '</p>' +
+            getPrice() +
+            '<p class="distance">Distance: ' + data[i].venue.location.distance + 'm</p>' +
+            '</div>' +
+            '</div>' +
+            getLinkEnd() +
+            '</div>';
 
-        if (data[i].venue.url) {
-            printContent += '<p class="url">Web: ' + data[i].venue.url + '</p>';
-        }
 
-        console.log("Slika: " + data[i].venue.featuredPhotos.count);
+        /*
+     printContent += '<div class="coffee-item">';
+     printContent += '<p class="name">' + data[i].venue.name + '</p>';
+     printContent += '<p class="address">Address: ' + data[i].venue.location.address + ', ' + data[i].venue.location.city + '</p>';
+     if (data[i].venue.contact.phone) {
+         printContent += '<p class="phone">Phone: ' + data[i].venue.contact.phone + '</p>';
+     }
+     if (data[i].venue.price) {
+         printContent += '<p class="price">Price: ' + data[i].venue.price.tier + '</p>';
+     }
+     printContent += '<p class="distance">Distance: ' + data[i].venue.location.distance + '</p>';
 
+     if (data[i].venue.url) {
+         printContent += '<p class="url">Web: ' + data[i].venue.url + '</p>';
+     }
+
+     console.log("Slika: " + data[i].venue.featuredPhotos.count);*/
+
+    }
+    function getImage() {
         if (data[i].venue.featuredPhotos.count > 0) {
             var photoUrl;
             console.log("ima slike");
             photoUrl = data[i].venue.featuredPhotos.items[0].prefix + "500x500" + data[i].venue.featuredPhotos.items[0].suffix;
             console.log(photoUrl);
-            printContent += '<img src="' + photoUrl + '">';
+            var forPrint = '<img src="' + photoUrl + '" alt="' + data[i].venue.name + '">';
+            return forPrint;
         }
+    }
+    function getPrice() {
+        priceData = '<p class="price">Price: ';
+        if (data[i].venue.price) {
+            for (var a = 0; a < data[i].venue.price.tier; a++) {
+                priceData += '$';
+            }
+            priceData += ' ' + data[i].venue.price.message;
+        }
+        else {
+            priceData += "No data";
+        }
+        priceData += '</p>';
+        return priceData;
+    }
+    function getLinkBeginning() {
+        var urlStart;
+        if (data[i].venue.url) {
+            urlStart = '<a href="' + data[i].venue.url + '">';
+        }
+        else {
+            urlStart = '<a href="#">';
+        }
+        return urlStart;
+    }
+    function getLinkEnd() {
+        urlEnd = '</a>';
+        return urlEnd;
     }
     output.innerHTML = printContent;
 
@@ -158,23 +208,23 @@ function sortCoffees(sortCriteria) {
     var arrayForPrint;
     if (sortCriteria == "Distance") {
         caffees.sort(function (a, b) {
-            return (a.venue.location.distance > b.venue.location.distance) ? 1 : ((b.venue.location.distance > a.venue.location.distance) ? -1 : 0);         
+            return (a.venue.location.distance > b.venue.location.distance) ? 1 : ((b.venue.location.distance > a.venue.location.distance) ? -1 : 0);
         });
-        arrayForPrint=caffees;
+        arrayForPrint = caffees;
     }
     else if (sortCriteria == "Price") {
-        var caffeesWithPrice=caffees.slice(0);
-        var caffeesNoPrice=[];
-        for(var i=0; i<caffeesWithPrice.length; i++){
-            if(caffeesWithPrice[i].venue.price==undefined){
-                var noPrice=caffeesWithPrice.splice(i,1);
+        var caffeesWithPrice = caffees.slice(0);
+        var caffeesNoPrice = [];
+        for (var i = 0; i < caffeesWithPrice.length; i++) {
+            if (caffeesWithPrice[i].venue.price == undefined) {
+                var noPrice = caffeesWithPrice.splice(i, 1);
                 caffeesNoPrice.push(noPrice[0]);
             }
         }
         caffeesWithPrice.sort(function (a, b) {
             return (a.venue.price.tier > b.venue.price.tier) ? 1 : ((b.venue.price.tier > a.venue.price.tier) ? -1 : 0);
         });
-        arrayForPrint=caffeesWithPrice.concat(caffeesNoPrice);
+        arrayForPrint = caffeesWithPrice.concat(caffeesNoPrice);
     }
     printData(arrayForPrint);
 }
