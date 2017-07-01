@@ -18,8 +18,7 @@ header{
     #cup2{
         @include cup();
         top:0;
-        left:100%;
-        margin-left:-500px;
+        right:0;
         background-image: url(../img/cup3.png);
         background-position:right top;
     }
@@ -162,3 +161,5 @@ header{
     font-weight: bold;
     color: darkred;
 }
+
+
