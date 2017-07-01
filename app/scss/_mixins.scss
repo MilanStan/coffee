@@ -11,4 +11,12 @@
         text-shadow: 0 0 15px black;
         font-weight:bold;
         text-transform:uppercase;
+        padding: 0 50px;
+}
+@mixin cup(){
+  position:absolute;
+        width:500px;
+        height:400px;
+        background-size: contain;
+        background-repeat: no-repeat;
 }

@@ -29,7 +29,7 @@ introTransform();
 function geoError(error) {
     switch (error.code) {
         case error.PERMISSION_DENIED:
-            intro.innerHTML = '<p>You denied the request for Geolocation.<br>'+
+            intro.innerHTML = '<p style="margin-top:0">You denied the request for Geolocation.<br>'+
             'You must accept the request for geolocation in order to app work.</p>'+
             '<button id="reload" class="button input-lg">Reload</button>';
             $("#reload").on('click',function () {
@@ -213,10 +213,12 @@ $("#sort-criteria").change(function () {
 });
 
 function introTransform(){
+    $(".main-content-wrapper").css("display","block");
     $("#intro h1").css("font-size","24px");
     $("#intro h2").css("display","none");
     $("#intro p").css("display","none");
     $("header").css({"height":"8vh", "min-height":"50px","background-color":"rgb(72,28,22)","background-image":"none"});
     $("header h1").css("margin-bottom","0px");
-
+    $("#cup1").css("display", "none");
+    $("#cup2").css("display", "none");
 }

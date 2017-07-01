@@ -6,6 +6,22 @@ header{
     #intro{
         @include vertical-align();
         text-align:center;
+        z-index: 1000;
+    }
+    #cup1{
+        @include cup();
+        top:100%;
+        margin-top:-400px;
+        left:0;
+        background-image: url(../img/cup1l.png);
+    }
+    #cup2{
+        @include cup();
+        top:0;
+        left:100%;
+        margin-left:-500px;
+        background-image: url(../img/cup3.png);
+        background-position:right top;
     }
     h1,h2,p{
         @include title();
@@ -42,6 +58,7 @@ header{
     background-size: cover;
     padding: 50px 0 100px;
     min-height: 93vh;
+    display:none;
 }
 .main-items-wrapper{
     background-color: rgba(241,216,195,0.8);

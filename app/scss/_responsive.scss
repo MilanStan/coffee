@@ -19,6 +19,16 @@
         font-size: 40px;
         margin-bottom:20px;
     }
+    #cup1{
+        width:400px;
+        height:320px;
+        margin-top:-320px;
+    }
+    #cup2{
+        width:400px;
+        height:320px;
+        margin-left:-400px;
+    }
     h2{
         font-size:24px;
     }
@@ -98,6 +108,16 @@
 }
 @media only screen and(max-width:499px){
     header{
+        #cup1{
+        width:300px;
+        height:240px;
+        margin-top:-240px;
+    }
+    #cup2{
+        width:300px;
+        height:240px;
+        margin-left:-300px;
+    }
         h1{
         font-size: 30px;
     }
@@ -119,4 +139,5 @@
         padding-right: 0;
         text-align:center;
     }
+     
 }
