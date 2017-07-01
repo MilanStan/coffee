@@ -2,6 +2,7 @@ header{
     background-image:url("../img/background-lighter.jpg");
     height:100vh;
     position:relative;
+    transition: 1.5s;
     #intro{
         @include vertical-align();
         text-align:center;
@@ -34,13 +35,13 @@ header{
 }
 .list{
     @include title();
-    margin-top:30px;
 }
 .main-content-wrapper{
     background:url(../img/coffee-bg.jpg) no-repeat right bottom;
     background-attachment: fixed;
     background-size: cover;
     padding: 50px 0 100px;
+    min-height: 93vh;
 }
 .main-items-wrapper{
     background-color: rgba(241,216,195,0.8);
@@ -91,12 +92,21 @@ header{
 .data-container{
     padding-top:30px;
     p{
-        font-size: 16px;
+        font-size: 18px;
+        line-height:1.1;
+        margin-bottom:5px;
+        .label{
+            font-size:18px;
+            font-weight: bold;
+            padding:0;
+            color:rgb(72,28,22);
+        }
     }
     .name{
     text-transform: uppercase;
     font-weight: bold;
-    font-size:24px;
+    font-size:20px;
+    line-height:1;
     }
 }
 
@@ -125,7 +135,13 @@ header{
 #sort-criteria{
     border: none;
     border-radius: 5px;
-    background-color: rgba(0,0 ,0 ,0.7);
+    background-color: rgba(72,28,22,0.8);
     color: white;
     font-weight: bold;
+}
+.no-coffees{
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    color: darkred;
 }

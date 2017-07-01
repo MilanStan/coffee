@@ -22,15 +22,8 @@ function geoSuccess(position) {
     var latitude = position.coords.latitude;
     var longitude = position.coords.longitude;
 
-    //intro.innerHTML = '<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>';
+introTransform();
     loadCoffees(buildUrl(latitude, longitude));
-
-    /*
-    var img = new Image();
-    img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&zoom=13&size=300x300&sensor=false";
- 
-    output.appendChild(img);
-    */
 }
 
 function geoError(error) {
@@ -64,7 +57,6 @@ function buildUrl(latitude, longitude) {
     var clientSecret = "4IA23BBFIS1W5GDJAVSHEJPTY3KLTAX0CJQTRCGDJDUJ3X15";
     var auth = "client_id=" + clientId + "&client_secret=" + clientSecret;
     var section = "section=coffee";
-    //var ll = "ll=43.313640,21.890734";
     var ll = "ll=" + latitude + "," + longitude;
     var radius = "radius=1000";
     var version = "v=20170629"
@@ -86,19 +78,13 @@ function loadCoffees(url) {
         success: function (response) {
 
             data = response;
-            console.log(data);
-            /* console.log(data.response.groups[0].items[0].venue.name);
-             console.log(data.response.groups[0].items[0].venue.contact.phone);
-             console.log("cena: " + data.response.groups[0].items[0].venue.price.tier);
-             console.log("Distance: " + data.response.groups[0].items[0].venue.location.distance);*/
-
-
+            
             caffees = response.response.groups[0].items;
             if (caffees.length > 0) {
                 printData(caffees);
             }
             else {
-                output.innerHTML = "There aren't coffees nearby.";
+                output.innerHTML = '<p class="no-coffees">There aren\'t coffees nearby!</p>';
             }
         },
         failure: function () {
@@ -126,46 +112,33 @@ function printData(data) {
             '</div>' +
             '<div class="col-sm-7 data-container">' +
             '<p class="name">' + data[i].venue.name + '</p>' +
-            '<p class="address">Address: ' + data[i].venue.location.address + ', ' + data[i].venue.location.city + '</p>' +
+            getAddress()+
             getPrice() +
-            '<p class="distance">Distance: ' + data[i].venue.location.distance + 'm</p>' +
+            '<p class="distance"><span class="label">Distance: </span>' + data[i].venue.location.distance + 'm</p>' +
             '</div>' +
             '</div>' +
             getLinkEnd() +
             '</div>';
 
-
-        /*
-     printContent += '<div class="coffee-item">';
-     printContent += '<p class="name">' + data[i].venue.name + '</p>';
-     printContent += '<p class="address">Address: ' + data[i].venue.location.address + ', ' + data[i].venue.location.city + '</p>';
-     if (data[i].venue.contact.phone) {
-         printContent += '<p class="phone">Phone: ' + data[i].venue.contact.phone + '</p>';
-     }
-     if (data[i].venue.price) {
-         printContent += '<p class="price">Price: ' + data[i].venue.price.tier + '</p>';
-     }
-     printContent += '<p class="distance">Distance: ' + data[i].venue.location.distance + '</p>';
-
-     if (data[i].venue.url) {
-         printContent += '<p class="url">Web: ' + data[i].venue.url + '</p>';
-     }
-
-     console.log("Slika: " + data[i].venue.featuredPhotos.count);*/
-
     }
     function getImage() {
-        if (data[i].venue.featuredPhotos.count > 0) {
-            var photoUrl;
+        var photoUrl;
+        var altTag;
+        if (data[i].venue.featuredPhotos.count > 0) {            
             console.log("ima slike");
             photoUrl = data[i].venue.featuredPhotos.items[0].prefix + "500x500" + data[i].venue.featuredPhotos.items[0].suffix;
             console.log(photoUrl);
-            var forPrint = '<img src="' + photoUrl + '" alt="' + data[i].venue.name + '">';
-            return forPrint;
+            altTag=data[i].venue.name;
         }
+        else{
+            photoUrl="../img/no-image.jpg";
+            altTag="no image";
+        }
+        var forPrint = '<img src="' + photoUrl + '" alt="' + altTag + '">';
+        return forPrint;
     }
     function getPrice() {
-        priceData = '<p class="price">Price: ';
+        var priceData = '<p class="price"><span class="label">Price: </span>';
         if (data[i].venue.price) {
             for (var a = 0; a < data[i].venue.price.tier; a++) {
                 priceData += '$';
@@ -177,6 +150,17 @@ function printData(data) {
         }
         priceData += '</p>';
         return priceData;
+    }
+    function getAddress() {
+        var address = '<p class="price"><span class="label">Address: </span><br>';
+        if (data[i].venue.location.address) {
+            address+=data[i].venue.location.address;
+        }
+        else {
+            address += "No data";
+        }
+        address += '</p>';
+        return address;
     }
     function getLinkBeginning() {
         var urlStart;
@@ -227,3 +211,12 @@ $("#sort-criteria").change(function () {
     var sortCriteria = $(this).val();
     sortCoffees(sortCriteria);
 });
+
+function introTransform(){
+    $("#intro h1").css("font-size","24px");
+    $("#intro h2").css("display","none");
+    $("#intro p").css("display","none");
+    $("header").css({"height":"8vh", "min-height":"50px","background-color":"rgb(72,28,22)","background-image":"none"});
+    $("header h1").css("margin-bottom","0px");
+
+}
