@@ -7,16 +7,25 @@
 }
 @mixin title(){
     text-align:center;
-        color: white;
-        text-shadow: 0 0 15px black;
-        font-weight:bold;
-        text-transform:uppercase;
-        padding: 0 50px;
+    color: lighten($coffee-color, 20%);
+    font-weight:bold;
+    text-transform:uppercase;
+    padding: 0 50px;
+    font-family: 'Kaushan Script', cursive;
 }
 @mixin cup(){
   position:absolute;
-        width:500px;
-        height:400px;
+        width:$cup-width-l;
+        height:$cup-height-l;
         background-size: contain;
         background-repeat: no-repeat;
+}
+@mixin textborder($width, $color, $blur){
+  text-shadow: $width+px 0 0 $color, 0 $width+px 0 $color, -($width+px) 0 0 $color, 0 -($width+px) 0 $color, 0 0 $blur+px black;
+}
+@mixin animation($name, $duration, $delay, $fill-mode){
+  animation-name: $name;
+  animation-duration: $duration;
+  animation-delay: $delay;
+  animation-fill-mode: $fill-mode;
 }

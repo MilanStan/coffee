@@ -6,7 +6,13 @@ var output = document.getElementById("content-wrapper");
 
 
 $(document).ready(function () {
+    //call data
     geoFindMe();
+
+    //call animation
+    $("#cup1").addClass("cup1-animation");
+    $("#cup2").addClass("cup2-animation");
+    $("#intro").addClass("intro-animation");
 });
 
 //Get user location
@@ -109,6 +115,7 @@ function printData(data) {
             '<div class="row item-content">' +
             '<div class="col-sm-5 image-container">' +
             getImage() +
+            '<div class="image-icon"><span class="glyphicons glyphicon-coffee-cup"></span></div>'+
             '</div>' +
             '<div class="col-sm-7 data-container">' +
             '<p class="name">' + data[i].venue.name + '</p>' +
@@ -217,7 +224,7 @@ function introTransform(){
     $("#intro h1").css("font-size","24px");
     $("#intro h2").css("display","none");
     $("#intro p").css("display","none");
-    $("header").css({"height":"8vh", "min-height":"50px","background-color":"rgb(72,28,22)","background-image":"none"});
+    $("header").css({"height":"8vh", "min-height":"50px","background-color":"rgb(72,28,22)","background-position-y":"-300vh"});
     $("header h1").css("margin-bottom","0px");
     $("#cup1").css("display", "none");
     $("#cup2").css("display", "none");

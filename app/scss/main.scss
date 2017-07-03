@@ -1,6 +1,7 @@
-@import '_mixins';
-@import '_base';
-@import '_variables';
+@import 'variables';
+@import 'mixins';
+@import 'base';
 @import 'components';
-@import '_pages';
-@import '_responsive';
+@import 'pages';
+@import 'responsive';
+@import 'animations';
