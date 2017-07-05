@@ -11,11 +11,11 @@
     100%{opacity:1;}
 }
 .cup1-animation{
-    @include animation(cup1, 0.7s, 0.5s, both);
+    @include animation(cup1, 1.2s, 0.5s, both);
 }
 .cup2-animation{
-    @include animation(cup2, 0.7s, 0.7s, both);
+    @include animation(cup2, 1.2s, 0.8s, both);
 }
 .intro-animation{
-    @include animation(intro, 0.7s, 1s, both);
+    @include animation(intro, 0.7s, 1.5s, both);
 }

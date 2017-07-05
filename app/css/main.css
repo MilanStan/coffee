@@ -48,7 +48,6 @@ header {
   header #intro {
     position: relative;
     top: 50%;
-    -webkit-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
     text-align: center;
@@ -136,7 +135,8 @@ header {
   .item-wrapper:hover {
     background-position: 95% 90%; }
   .item-wrapper:hover .image-container img {
-    transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+        transform: rotate(0deg);
     box-shadow: 0 0 15px black; }
 
 .item-wrapper:nth-child(odd) {
@@ -183,7 +183,8 @@ header {
     line-height: 1; }
 
 .image-container img {
-  transform: scale(0.8) rotate(-2deg);
+  -ms-transform: scale(0.8) rotate(-2deg);
+      transform: scale(0.8) rotate(-2deg);
   border: 7px solid white;
   box-shadow: 0 0 5px brown;
   transition: 0.5s; }
@@ -273,10 +274,12 @@ header {
   .image-container img {
     width: 70%;
     margin: 50px 0;
-    transform: rotate(0deg) scale(1);
+    -ms-transform: rotate(0deg) scale(1);
+        transform: rotate(0deg) scale(1);
     box-shadow: 0 0 10px brown; }
   .item-wrapper:hover .image-container img {
-    transform: scale(1);
+    -ms-transform: scale(1);
+        transform: scale(1);
     box-shadow: 0 0 20px black; }
   .item-wrapper {
     background-position: 100% 100%;
@@ -328,18 +331,18 @@ header {
 
 .cup1-animation {
   animation-name: cup1;
-  animation-duration: 0.7s;
+  animation-duration: 1.2s;
   animation-delay: 0.5s;
   animation-fill-mode: both; }
 
 .cup2-animation {
   animation-name: cup2;
-  animation-duration: 0.7s;
-  animation-delay: 0.7s;
+  animation-duration: 1.2s;
+  animation-delay: 0.8s;
   animation-fill-mode: both; }
 
 .intro-animation {
   animation-name: intro;
   animation-duration: 0.7s;
-  animation-delay: 1s;
+  animation-delay: 1.5s;
   animation-fill-mode: both; }

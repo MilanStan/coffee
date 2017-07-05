@@ -7,8 +7,8 @@
     <title>My Coffee Shop</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
         crossorigin="anonymous">
-        <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
-        <link rel="stylesheet" href="css/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
 
 </head>
 
@@ -33,15 +33,68 @@
         </div>
         <div class="container main-items-wrapper">
             <div class="row" id="content-wrapper">
-
+                <!--Here goes script id=item-container and it is placed on the end because it need be called again when we sort array and if it would be here it was overwritten when script is called first time when page is loaded so we can't use it again when sort array. Otherwise it can be here also.-->
             </div>
         </div>
     </section>
 
-
+    <script type="text/template" id="item-container">
+        {{#items}}
+        <div class="col-md-6 item-wrapper">
+            {{#venue.url}}
+            <a href="{{{venue.url}}}">
+                            {{/venue.url}}
+                            {{^venue.url}}
+                                <a href="#">
+                            {{/venue.url}}
+                        <div class="row item-content">
+                            <div class="col-sm-5 image-container">
+                                {{#venue.featuredPhotos}}
+                                <img src="{{{venue.featuredPhotos.items.0.prefix}}}500x500{{{venue.featuredPhotos.items.0.suffix}}}" alt="{{venue.name}}">
+                                {{/venue.featuredPhotos}}
+                                {{^venue.featuredPhotos}}
+                                <img src="img/no-image.jpg" alt="no image">
+                                {{/venue.featuredPhotos}}
+                                <div class="image-icon">
+                                    <span class="glyphicons glyphicon-coffee-cup">
+                                    </span>
+                                    </div>
+                            </div>
+                            <div class="col-sm-7 data-container">
+                                <p class="name">
+                                    {{#venue.name}}
+                                    {{venue.name}}
+                                    {{/venue.name}}
+                                    </p>
+                                    <p class="price"><span class="label">Address: </span><br>
+                                    {{#venue.location.address}}
+                                        {{venue.location.address}}
+                                    {{/venue.location.address}}
+                                    {{^venue.location.address}}
+                                        No data
+                                    {{/venue.location.address}}
+                                    </p>
+                                     <p class="price"><span class="label">Price: </span>
+                                     {{#venue.price}}
+                                     {{venue.price.message}}
+                                     {{/venue.price}}
+                                     {{^venue.price}}
+                                     No data
+                                     {{/venue.price}}
+                                     </p>
+                                <p class="distance"><span class="label">Distance: </span>
+                                {{venue.location.distance}}m
+                                </p>
+                            </div>
+                        </div>
+                        </a>
+        </div>
+        {{/items}}
+    </script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
-        <script src="js/load-coffee-shops.js"></script>
+    <script src="js/mustache.js"></script>
+    <script src="js/load-coffee-shops.js"></script>
 </body>
 
 </html>

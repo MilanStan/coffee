@@ -72,7 +72,7 @@ function buildUrl(latitude, longitude) {
     var limit = "limit=10";
 
     var url = baseUrl + "&" + ll + "&" + radius + "&" + section + "&" + photos + "&" + open + "&" + distance + "&" + "&" + limit + "&" + auth + "&" + version;
-
+    console.log("Url adresa je: "+ url);
     return url;
 }
 
@@ -84,8 +84,9 @@ function loadCoffees(url) {
         success: function (response) {
 
             data = response;
-            
+            //get array of objects
             caffees = response.response.groups[0].items;
+            
             if (caffees.length > 0) {
                 printData(caffees);
             }
@@ -106,7 +107,16 @@ function loadCoffees(url) {
 
 //Print data
 function printData(data) {
-
+    //convert data which is array of objects to object in order to apply mustache
+    dataObj={"items":data};
+    console.log(dataObj);
+    var template=$("#item-container").html();
+    console.log("template: "+template);
+    var htmlContent = Mustache.to_html(template, dataObj);
+    console.log(output);
+    console.log("htmlcontent: "+htmlContent);
+    output.innerHTML=htmlContent;
+/*
     var printContent = "";
     for (var i = 0; i < data.length; i++) {
         printContent +=
@@ -184,7 +194,7 @@ function printData(data) {
         return urlEnd;
     }
     output.innerHTML = printContent;
-
+*/
 }
 
 //Sort caffees
@@ -210,6 +220,7 @@ function sortCoffees(sortCriteria) {
         });
         arrayForPrint = caffeesWithPrice.concat(caffeesNoPrice);
     }
+    console.log("array with price: "+caffeesWithPrice);
     printData(arrayForPrint);
 }
 
@@ -224,7 +235,7 @@ function introTransform(){
     $("#intro h1").css("font-size","24px");
     $("#intro h2").css("display","none");
     $("#intro p").css("display","none");
-    $("header").css({"height":"8vh", "min-height":"50px","background-color":"rgb(72,28,22)","background-position-y":"-300vh"});
+    $("header").css({"height":"8vh", "min-height":"50px","background-color":"rgb(72,28,22)","background-image":"none"});
     $("header h1").css("margin-bottom","0px");
     $("#cup1").css("display", "none");
     $("#cup2").css("display", "none");
