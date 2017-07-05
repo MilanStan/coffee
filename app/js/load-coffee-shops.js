@@ -28,8 +28,8 @@ function geoSuccess(position) {
     var latitude = position.coords.latitude;
     var longitude = position.coords.longitude;
 
-introTransform();
     loadCoffees(buildUrl(latitude, longitude));
+    introTransform();
 }
 
 function geoError(error) {
@@ -231,12 +231,13 @@ $("#sort-criteria").change(function () {
 });
 
 function introTransform(){
-    $(".main-content-wrapper").css("display","block");
     $("#intro h1").css("font-size","24px");
     $("#intro h2").css("display","none");
     $("#intro p").css("display","none");
+    $("#bowlG").css("display","none");
     $("header").css({"height":"8vh", "min-height":"50px","background-color":"rgb(72,28,22)","background-image":"none"});
     $("header h1").css("margin-bottom","0px");
     $("#cup1").css("display", "none");
     $("#cup2").css("display", "none");
+    $(".main-content-wrapper").css("display","block");
 }
