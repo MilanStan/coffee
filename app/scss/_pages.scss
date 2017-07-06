@@ -1,5 +1,4 @@
 header{
-    background-color: lighten($coffee-color,15%);
     background-image:url("../img/background-lighter.jpg");
     background-repeat:no-repeat;
     height:100vh;
@@ -15,6 +14,7 @@ header{
         bottom:0;
         left:0;
         background-image: url(../img/cup1l.png);
+        opacity:0;
     }
     #cup2{
         @include cup();
@@ -22,6 +22,14 @@ header{
         right:0;
         background-image: url(../img/cup3.png);
         background-position:right top;
+        opacity:0;
+    }
+    #background-hover{
+        position:absolute;
+        width:100%;
+        height:100%;
+        top:0;
+        transition:1.5s;
     }
     h1,h2,p{
         @include title();
@@ -111,12 +119,23 @@ header{
 .image-container{
     padding:0;
     position: relative;
+    &:hover .image-icon{
+        opacity: 1;
+    }
     .image-icon{
         position:absolute;
-        top:0;
-        left:0;
         width:100%;
-        height:100%;
+        text-align:center;
+        top:50%;
+        margin-top:-50px;
+        left:0;
+        opacity:0;
+        transition: 0.5s;
+
+        .glyphicon-plus{
+            font-size:70px;
+            color: white;
+        }
     }
 }
 .data-container{

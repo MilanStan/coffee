@@ -1,7 +1,7 @@
 //Global variables
 
 var caffees;
-var intro=document.getElementById("intro");
+var intro = document.getElementById("intro");
 var output = document.getElementById("content-wrapper");
 
 
@@ -10,9 +10,11 @@ $(document).ready(function () {
     geoFindMe();
 
     //call animation
-    $("#cup1").addClass("cup1-animation");
-    $("#cup2").addClass("cup2-animation");
-    $("#intro").addClass("intro-animation");
+    if ($(window).width() > 768) {
+        $("#cup1").addClass("cup1-animation");
+        $("#cup2").addClass("cup2-animation");
+        $("#intro").addClass("intro-animation");
+    }
 });
 
 //Get user location
@@ -24,6 +26,7 @@ function geoFindMe() {
 
     navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
 }
+
 function geoSuccess(position) {
     var latitude = position.coords.latitude;
     var longitude = position.coords.longitude;
@@ -35,10 +38,10 @@ function geoSuccess(position) {
 function geoError(error) {
     switch (error.code) {
         case error.PERMISSION_DENIED:
-            intro.innerHTML = '<p style="margin-top:0">You denied the request for Geolocation.<br>'+
-            'You must accept the request for geolocation in order to app work.</p>'+
-            '<button id="reload" class="button input-lg">Reload</button>';
-            $("#reload").on('click',function () {
+            intro.innerHTML = '<p style="margin-top:0">You denied the request for Geolocation.<br>' +
+                'You must accept the request for geolocation in order to app work.</p>' +
+                '<button id="reload" class="button input-lg">Reload</button>';
+            $("#reload").on('click', function () {
                 location.reload();
             });
             break;
@@ -72,7 +75,7 @@ function buildUrl(latitude, longitude) {
     var limit = "limit=10";
 
     var url = baseUrl + "&" + ll + "&" + radius + "&" + section + "&" + photos + "&" + open + "&" + distance + "&" + "&" + limit + "&" + auth + "&" + version;
-    console.log("Url adresa je: "+ url);
+    console.log("Url adresa je: " + url);
     return url;
 }
 
@@ -86,12 +89,12 @@ function loadCoffees(url) {
             data = response;
             //get array of objects
             caffees = response.response.groups[0].items;
-            
+
             if (caffees.length > 0) {
                 printData(caffees);
-            }
-            else {
+            } else {
                 output.innerHTML = '<p class="no-coffees">There aren\'t coffees nearby!</p>';
+                $("#sort-criteria").attr("disabled", "disabled");
             }
         },
         failure: function () {
@@ -108,93 +111,95 @@ function loadCoffees(url) {
 //Print data
 function printData(data) {
     //convert data which is array of objects to object in order to apply mustache
-    dataObj={"items":data};
+    dataObj = {
+        "items": data
+    };
     console.log(dataObj);
-    var template=$("#item-container").html();
-    console.log("template: "+template);
+    var template = $("#item-container").html();
+    console.log("template: " + template);
     var htmlContent = Mustache.to_html(template, dataObj);
     console.log(output);
-    console.log("htmlcontent: "+htmlContent);
-    output.innerHTML=htmlContent;
-/*
-    var printContent = "";
-    for (var i = 0; i < data.length; i++) {
-        printContent +=
-            '<div class="col-md-6 item-wrapper">' +
-            getLinkBeginning() +
-            '<div class="row item-content">' +
-            '<div class="col-sm-5 image-container">' +
-            getImage() +
-            '<div class="image-icon"><span class="glyphicons glyphicon-coffee-cup"></span></div>'+
-            '</div>' +
-            '<div class="col-sm-7 data-container">' +
-            '<p class="name">' + data[i].venue.name + '</p>' +
-            getAddress()+
-            getPrice() +
-            '<p class="distance"><span class="label">Distance: </span>' + data[i].venue.location.distance + 'm</p>' +
-            '</div>' +
-            '</div>' +
-            getLinkEnd() +
-            '</div>';
+    console.log("htmlcontent: " + htmlContent);
+    output.innerHTML = htmlContent;
+    /*
+        var printContent = "";
+        for (var i = 0; i < data.length; i++) {
+            printContent +=
+                '<div class="col-md-6 item-wrapper">' +
+                getLinkBeginning() +
+                '<div class="row item-content">' +
+                '<div class="col-sm-5 image-container">' +
+                getImage() +
+                '<div class="image-icon"><span class="glyphicons glyphicon-coffee-cup"></span></div>'+
+                '</div>' +
+                '<div class="col-sm-7 data-container">' +
+                '<p class="name">' + data[i].venue.name + '</p>' +
+                getAddress()+
+                getPrice() +
+                '<p class="distance"><span class="label">Distance: </span>' + data[i].venue.location.distance + 'm</p>' +
+                '</div>' +
+                '</div>' +
+                getLinkEnd() +
+                '</div>';
 
-    }
-    function getImage() {
-        var photoUrl;
-        var altTag;
-        if (data[i].venue.featuredPhotos.count > 0) {            
-            console.log("ima slike");
-            photoUrl = data[i].venue.featuredPhotos.items[0].prefix + "500x500" + data[i].venue.featuredPhotos.items[0].suffix;
-            console.log(photoUrl);
-            altTag=data[i].venue.name;
         }
-        else{
-            photoUrl="../img/no-image.jpg";
-            altTag="no image";
-        }
-        var forPrint = '<img src="' + photoUrl + '" alt="' + altTag + '">';
-        return forPrint;
-    }
-    function getPrice() {
-        var priceData = '<p class="price"><span class="label">Price: </span>';
-        if (data[i].venue.price) {
-            for (var a = 0; a < data[i].venue.price.tier; a++) {
-                priceData += '$';
+        function getImage() {
+            var photoUrl;
+            var altTag;
+            if (data[i].venue.featuredPhotos.count > 0) {            
+                console.log("ima slike");
+                photoUrl = data[i].venue.featuredPhotos.items[0].prefix + "500x500" + data[i].venue.featuredPhotos.items[0].suffix;
+                console.log(photoUrl);
+                altTag=data[i].venue.name;
             }
-            priceData += ' ' + data[i].venue.price.message;
+            else{
+                photoUrl="../img/no-image.jpg";
+                altTag="no image";
+            }
+            var forPrint = '<img src="' + photoUrl + '" alt="' + altTag + '">';
+            return forPrint;
         }
-        else {
-            priceData += "No data";
+        function getPrice() {
+            var priceData = '<p class="price"><span class="label">Price: </span>';
+            if (data[i].venue.price) {
+                for (var a = 0; a < data[i].venue.price.tier; a++) {
+                    priceData += '$';
+                }
+                priceData += ' ' + data[i].venue.price.message;
+            }
+            else {
+                priceData += "No data";
+            }
+            priceData += '</p>';
+            return priceData;
         }
-        priceData += '</p>';
-        return priceData;
-    }
-    function getAddress() {
-        var address = '<p class="price"><span class="label">Address: </span><br>';
-        if (data[i].venue.location.address) {
-            address+=data[i].venue.location.address;
+        function getAddress() {
+            var address = '<p class="price"><span class="label">Address: </span><br>';
+            if (data[i].venue.location.address) {
+                address+=data[i].venue.location.address;
+            }
+            else {
+                address += "No data";
+            }
+            address += '</p>';
+            return address;
         }
-        else {
-            address += "No data";
+        function getLinkBeginning() {
+            var urlStart;
+            if (data[i].venue.url) {
+                urlStart = '<a href="' + data[i].venue.url + '">';
+            }
+            else {
+                urlStart = '<a href="#">';
+            }
+            return urlStart;
         }
-        address += '</p>';
-        return address;
-    }
-    function getLinkBeginning() {
-        var urlStart;
-        if (data[i].venue.url) {
-            urlStart = '<a href="' + data[i].venue.url + '">';
+        function getLinkEnd() {
+            urlEnd = '</a>';
+            return urlEnd;
         }
-        else {
-            urlStart = '<a href="#">';
-        }
-        return urlStart;
-    }
-    function getLinkEnd() {
-        urlEnd = '</a>';
-        return urlEnd;
-    }
-    output.innerHTML = printContent;
-*/
+        output.innerHTML = printContent;
+    */
 }
 
 //Sort caffees
@@ -205,8 +210,7 @@ function sortCoffees(sortCriteria) {
             return (a.venue.location.distance > b.venue.location.distance) ? 1 : ((b.venue.location.distance > a.venue.location.distance) ? -1 : 0);
         });
         arrayForPrint = caffees;
-    }
-    else if (sortCriteria == "Price") {
+    } else if (sortCriteria == "Price") {
         var caffeesWithPrice = caffees.slice(0);
         var caffeesNoPrice = [];
         for (var i = 0; i < caffeesWithPrice.length; i++) {
@@ -220,7 +224,7 @@ function sortCoffees(sortCriteria) {
         });
         arrayForPrint = caffeesWithPrice.concat(caffeesNoPrice);
     }
-    console.log("array with price: "+caffeesWithPrice);
+    console.log("array with price: " + caffeesWithPrice);
     printData(arrayForPrint);
 }
 
@@ -230,14 +234,17 @@ $("#sort-criteria").change(function () {
     sortCoffees(sortCriteria);
 });
 
-function introTransform(){
-    $("#intro h1").css("font-size","24px");
-    $("#intro h2").css("display","none");
-    $("#intro p").css("display","none");
-    $("#bowlG").css("display","none");
-    $("header").css({"height":"8vh", "min-height":"50px","background-color":"rgb(72,28,22)","background-image":"none"});
-    $("header h1").css("margin-bottom","0px");
+function introTransform() {
+    $("#intro h1").css("font-size", "24px");
+    $("#intro h2").css("display", "none");
+    $("#intro p").css("display", "none");
+    $("header").css({
+        "height": "8vh",
+        "min-height": "50px"
+    });
+    $("#background-hover").css("background-color", "rgb(72,28,22)");
+    $("header h1").css("margin-bottom", "0px");
     $("#cup1").css("display", "none");
     $("#cup2").css("display", "none");
-    $(".main-content-wrapper").css("display","block");
+    $(".main-content-wrapper").css("display", "block");
 }

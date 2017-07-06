@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
         crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+    <link href="//cdn.rawgit.com/noelboss/featherlight/1.7.6/release/featherlight.min.css" type="text/css" rel="stylesheet" />
     <link rel="stylesheet" href="css/main.css">
 
 </head>
@@ -21,6 +22,7 @@
         </div>
         <div id="cup1"></div>
         <div id="cup2"></div>
+        <div id="background-hover"></div>
     </header>
     <section class="main-content-wrapper">
         <h2 class="list">List of the nearest coffee shops</h2>
@@ -41,58 +43,51 @@
     <script type="text/template" id="item-container">
         {{#items}}
         <div class="col-md-6 item-wrapper">
-            {{#venue.url}}
-            <a href="{{{venue.url}}}">
-                            {{/venue.url}}
-                            {{^venue.url}}
-                                <a href="#">
-                            {{/venue.url}}
-                        <div class="row item-content">
-                            <div class="col-sm-5 image-container">
-                                {{#venue.featuredPhotos}}
-                                <img src="{{{venue.featuredPhotos.items.0.prefix}}}500x500{{{venue.featuredPhotos.items.0.suffix}}}" alt="{{venue.name}}">
-                                {{/venue.featuredPhotos}}
-                                {{^venue.featuredPhotos}}
-                                <img src="img/no-image.jpg" alt="no image">
-                                {{/venue.featuredPhotos}}
-                                <div class="image-icon">
-                                    <span class="glyphicons glyphicon-coffee-cup">
-                                    </span>
-                                    </div>
-                            </div>
-                            <div class="col-sm-7 data-container">
-                                <p class="name">
-                                    {{#venue.name}}
-                                    {{venue.name}}
-                                    {{/venue.name}}
-                                    </p>
-                                    <p class="price"><span class="label">Address: </span><br>
-                                    {{#venue.location.address}}
-                                        {{venue.location.address}}
-                                    {{/venue.location.address}}
-                                    {{^venue.location.address}}
-                                        No data
-                                    {{/venue.location.address}}
-                                    </p>
-                                     <p class="price"><span class="label">Price: </span>
-                                     {{#venue.price}}
-                                     {{venue.price.message}}
-                                     {{/venue.price}}
-                                     {{^venue.price}}
-                                     No data
-                                     {{/venue.price}}
-                                     </p>
-                                <p class="distance"><span class="label">Distance: </span>
-                                {{venue.location.distance}}m
-                                </p>
-                            </div>
+
+            <div class="row item-content">
+                <div class="col-sm-5 image-container">
+                    {{#venue.featuredPhotos}}
+                    <a href="#" data-featherlight={{{venue.featuredPhotos.items.0.prefix}}}original{{{venue.featuredPhotos.items.0.suffix}}}>
+                        <img src="{{{venue.featuredPhotos.items.0.prefix}}}500x500{{{venue.featuredPhotos.items.0.suffix}}}" alt="{{venue.name}}">
+                        <div class="image-icon">
+                            <span class="glyphicons glyphicon-plus"></span>
                         </div>
-                        </a>
+                    </a>
+                    {{/venue.featuredPhotos}} 
+                    {{^venue.featuredPhotos}}
+                    <img src="img/no-image.jpg" alt="no image"> 
+                     {{/venue.featuredPhotos}}
+                </div>
+                <div class="col-sm-7 data-container">
+                    {{#venue.url}}
+                    <a href="{{{venue.url}}}">
+                    {{/venue.url}}
+                    {{^venue.url}}
+                    <a href="#">
+                    {{/venue.url}}
+                    <p class="name">
+                        {{#venue.name}}
+                            {{venue.name}}
+                        {{/venue.name}}
+                    </p>
+                    </a>
+                    <p class="price"><span class="label">Address: </span><br> {{#venue.location.address}} {{venue.location.address}} {{/venue.location.address}}
+                        {{^venue.location.address}} No data {{/venue.location.address}}
+                    </p>
+                    <p class="price"><span class="label">Price: </span> {{#venue.price}} {{venue.price.message}} {{/venue.price}} {{^venue.price}}
+                        No data {{/venue.price}}
+                    </p>
+                    <p class="distance"><span class="label">Distance: </span> {{venue.location.distance}}m
+                    </p>
+                </div>
+            </div>
+
         </div>
         {{/items}}
     </script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
+    <script src="//cdn.rawgit.com/noelboss/featherlight/1.7.6/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/mustache.js"></script>
     <script src="js/load-coffee-shops.js"></script>
 </body>
