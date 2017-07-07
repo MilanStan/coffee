@@ -164,7 +164,13 @@ header {
 
 .image-container {
   padding: 0;
-  position: relative; }
+  position: relative;
+  background-image: url(../img/loader-icon.svg);
+  background-size: 120px 120px;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-width: 120px;
+  min-height: 120px; }
   .image-container:hover .image-icon {
     opacity: 1; }
   .image-container .image-icon {
@@ -185,7 +191,8 @@ header {
   .data-container p {
     font-size: 18px;
     line-height: 1.1;
-    margin-bottom: 5px; }
+    margin-bottom: 5px;
+    color: #481c16; }
     .data-container p .label {
       font-size: 18px;
       font-weight: bold;

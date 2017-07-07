@@ -121,6 +121,9 @@ function printData(data) {
     console.log(output);
     console.log("htmlcontent: " + htmlContent);
     output.innerHTML = htmlContent;
+
+    imageLoadingAnimation();
+
     /*
         var printContent = "";
         for (var i = 0; i < data.length; i++) {
@@ -246,5 +249,15 @@ function introTransform() {
     $("header h1").css("margin-bottom", "0px");
     $("#cup1").css("display", "none");
     $("#cup2").css("display", "none");
+
     $(".main-content-wrapper").css("display", "block");
+
+}
+function imageLoadingAnimation() {
+    $(".image-container img").css("visibility", "hidden");
+
+    $(".image-container img").on('load', function () {
+        $(this).css("visibility", "visible");
+        //$(".image-container").css("background-image", "none");
+    });
 }
