@@ -41,6 +41,7 @@ img {
 header {
   background-image: url("../img/background-lighter.jpg");
   background-repeat: no-repeat;
+  background-size: cover;
   height: 100vh;
   position: relative;
   transition: 1.5s; }
@@ -237,9 +238,14 @@ header {
   color: darkred; }
 
 @media only screen and (max-width: 1199px) {
-  header #cup1, header #cup2 {
-    width: 400px;
-    height: 320px; }
+  header {
+    background-image: url("../img/background-lighter-lg.jpg"); }
+    header #cup1,
+    header #cup2 {
+      width: 400px;
+      height: 320px; }
+  .main-content-wrapper {
+    background-image: url("../img/coffee-bg-lg.jpg"); }
   .data-container {
     padding-top: 20px; }
     .data-container .name {
@@ -283,14 +289,19 @@ header {
         font-size: 18px; } }
 
 @media only screen and (max-width: 767px) {
-  header #cup1, header #cup2 {
-    opacity: 1; }
-  header h1 {
-    font-size: 36px; }
-  header h2 {
-    font-size: 22px; }
-  header p {
-    font-size: 30px; }
+  header {
+    background-image: url("../img/background-lighter-md.jpg"); }
+    header #cup1,
+    header #cup2 {
+      opacity: 1; }
+    header h1 {
+      font-size: 36px; }
+    header h2 {
+      font-size: 22px; }
+    header p {
+      font-size: 30px; }
+  .main-content-wrapper {
+    background-image: url(../img/coffee-bg-md.jpg); }
   .list {
     font-size: 24px; }
   .image-container {
@@ -315,13 +326,20 @@ header {
     padding-right: 120px; } }
 
 @media only screen and (max-width: 499px) {
-  header #cup1, header #cup2 {
-    width: 300px;
-    height: 240px; }
-  header #intro h1 {
-    font-size: 33px; }
-  header #intro h1, header #intro h2, header #intro p {
-    padding: 0 20px; }
+  header {
+    background-image: url("../img/background-lighter-sm.jpg"); }
+    header #cup1,
+    header #cup2 {
+      width: 300px;
+      height: 240px; }
+    header #intro h1 {
+      font-size: 33px; }
+    header #intro h1,
+    header #intro h2,
+    header #intro p {
+      padding: 0 20px; }
+  .main-content-wrapper {
+    background-image: url(../img/coffee-bg-sm.jpg); }
   .item-wrapper {
     background-image: none; }
   .image-container img {

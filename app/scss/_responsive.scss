@@ -1,142 +1,156 @@
-@media only screen and(max-width:1199px){
-    header{
-        #cup1, #cup2{
-        width:$cup-width-m;
-        height:$cup-height-m;
-    }
-    
-    }
-    .data-container{
-        padding-top:20px;
-        .name{
-            font-size:18px;
-        }
-        p{
-        font-size: 16px;
-        line-height:1;
-        .label{
-            font-size:16px;
+@media only screen and(max-width:1199px) {
+    header {
+        background-image: url("../img/background-lighter-lg.jpg");
+        #cup1,
+        #cup2 {
+            width: $cup-width-m;
+            height: $cup-height-m;
         }
     }
+    .main-content-wrapper{
+        background-image:url("../img/coffee-bg-lg.jpg");
     }
-}
-@media only screen and(max-width:991px){
-    header{
-        h1{
-        font-size: 40px;
-        margin-bottom:20px;
-    }
-    
-    h2{
-        font-size:24px;
-    }
-    }
-    .list{
-        font-size:28px;
-    }
-    .item-wrapper:nth-child(odd){
-    border-width: 0;
-    border-style: dotted;
-    border-color: brown;
-}
-.item-wrapper:nth-child(even){
-    border-width: 0;
-    border-style: dotted;
-    border-color: brown;
-}
-.item-wrapper{
-    border-top: 1px dotted brown !important;
-}
-.item-wrapper:nth-child(1){
-    border-top:none !important;
-}
-.data-container{
-    padding-top:30px;
-    
-    .name{
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size:24px;
-    }
-    p{
-        font-size: 18px;
-        line-height:1.1;
-        .label{
-            font-size:18px;
+    .data-container {
+        padding-top: 20px;
+        .name {
+            font-size: 18px;
+        }
+        p {
+            font-size: 16px;
+            line-height: 1;
+            .label {
+                font-size: 16px;
+            }
         }
     }
 }
 
-}
-@media only screen and(max-width:767px){
-    header{
-        #cup1, #cup2{
-            opacity:1;
+@media only screen and(max-width:991px) {
+    header {
+        h1 {
+            font-size: 40px;
+            margin-bottom: 20px;
         }
-        h1{
-        font-size: 36px;
+        h2 {
+            font-size: 24px;
+        }
     }
-    h2{
-        font-size:22px;
+    .list {
+        font-size: 28px;
     }
-    p{
-        font-size:30px;
+    .item-wrapper:nth-child(odd) {
+        border-width: 0;
+        border-style: dotted;
+        border-color: brown;
     }
+    .item-wrapper:nth-child(even) {
+        border-width: 0;
+        border-style: dotted;
+        border-color: brown;
     }
-    .list{
-        font-size:24px;
+    .item-wrapper {
+        border-top: 1px dotted brown !important;
     }
-    .image-container{
+    .item-wrapper:nth-child(1) {
+        border-top: none !important;
+    }
+    .data-container {
+        padding-top: 30px;
+        .name {
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 24px;
+        }
+        p {
+            font-size: 18px;
+            line-height: 1.1;
+            .label {
+                font-size: 18px;
+            }
+        }
+    }
+}
+
+@media only screen and(max-width:767px) {
+    header {
+        background-image: url("../img/background-lighter-md.jpg");
+        #cup1,
+        #cup2 {
+            opacity: 1;
+        }
+        h1 {
+            font-size: 36px;
+        }
+        h2 {
+            font-size: 22px;
+        }
+        p {
+            font-size: 30px;
+        }
+    }
+    .main-content-wrapper{
+        background-image:url(../img/coffee-bg-md.jpg);
+    }
+    .list {
+        font-size: 24px;
+    }
+    .image-container {
         text-align: center;
     }
-    .image-container img{
+    .image-container img {
         width: 70%;
         margin: 50px 0;
         transform: rotate(0deg) scale(1);
         box-shadow: 0 0 10px brown;
     }
-    .item-wrapper:hover .image-container img{
+    .item-wrapper:hover .image-container img {
         transform: scale(1);
         box-shadow: 0 0 20px black;
     }
-    .item-wrapper{
-                background-position: 100% 100%;
-                padding: 0 15px;
-    &:hover{
+    .item-wrapper {
         background-position: 100% 100%;
+        padding: 0 15px;
+        &:hover {
+            background-position: 100% 100%;
+        }
     }
-    }
-    .data-container{
-        padding-top:0;
+    .data-container {
+        padding-top: 0;
         padding-right: 120px;
     }
 }
-@media only screen and(max-width:499px){
-    header{
-        #cup1,#cup2{
-        width:$cup-width-s;
-        height:$cup-height-s;
+
+@media only screen and(max-width:499px) {
+    header {
+        background-image:url("../img/background-lighter-sm.jpg");
+        #cup1,
+        #cup2 {
+            width: $cup-width-s;
+            height: $cup-height-s;
         }
-    #intro{
-        h1{
-        font-size: 33px;
-    }
-    h1,h2,p{
-            padding: 0 20px;
+        #intro {
+            h1 {
+                font-size: 33px;
+            }
+            h1,
+            h2,
+            p {
+                padding: 0 20px;
+            }
         }
     }
+    .main-content-wrapper{
+        background-image:url(../img/coffee-bg-sm.jpg);
     }
-    
-    .item-wrapper{
+    .item-wrapper {
         background-image: none;
     }
-    .image-container img{
-        width:85%;
+    .image-container img {
+        width: 85%;
         margin: 20px 0;
     }
-    .data-container{
-        padding:0;
-        text-align:center;
+    .data-container {
+        padding: 0;
+        text-align: center;
     }
-     
 }

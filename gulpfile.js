@@ -12,6 +12,8 @@ var imagemin = require('gulp-imagemin');
 var cache = require('gulp-cache');
 var del = require('del');
 var runSequence = require('run-sequence');
+//var jimp = require("gulp-jimp-resize");
+var responsive = require('gulp-responsive-images');
 
 // Basic Gulp task syntax
 gulp.task('hello', function() {
@@ -105,3 +107,34 @@ gulp.task('build', function(callback) {
     callback
   )
 })
+
+// Image resizing 
+// -----------------
+//gulp.task('resize', function() {
+//    return gulp.src(
+//        'app/img/**/*.{png,jpg,bmp}'
+//        )
+//    .pipe(jimp({
+//        sizes: [
+//            {"suffix": "md", "width": 960, "height":1000, "crop": true},
+ //           {"suffix": "sm", "width": 480}
+ //       ]
+ //   }))
+ //   .pipe(gulp.dest('app/resized/'));
+//});
+gulp.task("resize", function () {
+  gulp.src("app/img/*")
+    .pipe(responsive({
+      "*.jpg": [{
+        width: 1200,   
+        suffix: "-lg"
+      }, {
+        width: 800,
+        suffix: '-md'
+      },{
+        width: 500,
+        suffix: '-sm'
+      }]
+    }))
+    .pipe(gulp.dest("app/img"));
+});
