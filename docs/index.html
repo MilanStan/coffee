@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Coffee Shop</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+    <link rel="stylesheet" href="css/combined.css">
+</head>
+
+<body>
+    <header>
+        <div id="intro">
+            <h1>My Coffee Shop</h1>
+            <h2>Find the nearest coffee shop and relax</h2>
+            <p id="loading">Locating <span>.</span><span>.</span><span>.</span></p>
+        </div>
+        <div id="cup1"></div>
+        <div id="cup2"></div>
+        <div id="background-hover"></div>
+    </header>
+    <section class="main-content-wrapper">
+        <h2 class="list">List of the nearest coffee shops</h2>
+        <div class="sort-wrapper container text-center">
+            <span>Sort by: </span>
+            <select id="sort-criteria" class="input-lg">
+                <option value="Distance">Distance</option>
+                <option value="Price">Price</option>
+            </select>
+        </div>
+        <div class="container main-items-wrapper">
+            <div class="row" id="content-wrapper">
+                <!--Here goes script id=item-container and it is placed on the end because it need be called again when we sort array and if it would be here it was overwritten when script is called first time when page is loaded so we can't use it again when sort array. Otherwise it can be here also.-->
+            </div>
+        </div>
+    </section>
+
+    <script type="text/template" id="item-container">
+        {{#items}}
+        <div class="col-md-6 item-wrapper">
+
+            <div class="row item-content">
+                <div class="col-sm-5 image-container">
+                    {{#venue.featuredPhotos}}
+                    <a href="#" data-featherlight={{{venue.featuredPhotos.items.0.prefix}}}original{{{venue.featuredPhotos.items.0.suffix}}}>
+                        <img src="{{{venue.featuredPhotos.items.0.prefix}}}500x500{{{venue.featuredPhotos.items.0.suffix}}}" alt="{{venue.name}}">
+                        <div class="image-icon">
+                            <span class="glyphicons glyphicon-plus"></span>
+                        </div>
+                    </a>
+                    {{/venue.featuredPhotos}} 
+                    {{^venue.featuredPhotos}}
+                    <img src="img/no-image.jpg" alt="no image"> 
+                     {{/venue.featuredPhotos}}
+                </div>
+                <div class="col-sm-7 data-container">
+                    {{#venue.url}}
+                    <a href="{{{venue.url}}}">
+                    {{/venue.url}}
+                    {{^venue.url}}
+                    <a href="#">
+                    {{/venue.url}}
+                    <p class="name">
+                        {{#venue.name}}
+                            {{venue.name}}
+                        {{/venue.name}}
+                    </p>
+                    </a>
+                    <p class="price"><span class="label">Address: </span><br> {{#venue.location.address}} {{venue.location.address}} {{/venue.location.address}}
+                        {{^venue.location.address}} No data {{/venue.location.address}}
+                    </p>
+                    <p class="price"><span class="label">Price: </span> {{#venue.price}} {{venue.price.message}} {{/venue.price}} {{^venue.price}}
+                        No data {{/venue.price}}
+                    </p>
+                    <p class="distance"><span class="label">Distance: </span> {{venue.location.distance}}m
+                    </p>
+                </div>
+            </div>
+
+        </div>
+        {{/items}}
+    </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+    <script src="js/combined.js"></script>
+</body>
+
+</html>

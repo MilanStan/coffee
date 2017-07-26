@@ -60,7 +60,7 @@ gulp.task('useref', function() {
     .pipe(useref())
     .pipe(gulpIf('*.js', uglify()))
     .pipe(gulpIf('*.css', cssnano()))
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('docs'));
 });
 
 // Optimizing Images 
@@ -70,24 +70,24 @@ gulp.task('images', function() {
     .pipe(cache(imagemin({
       interlaced: true,
     })))
-    .pipe(gulp.dest('dist/img'))
+    .pipe(gulp.dest('docs/img'))
 });
 
 // Copying fonts 
 gulp.task('fonts', function() {
   return gulp.src('app/fonts/**/*')
-    .pipe(gulp.dest('dist/fonts'))
+    .pipe(gulp.dest('docs/fonts'))
 })
 
 // Cleaning 
 gulp.task('clean', function() {
-  return del.sync('dist').then(function(cb) {
+  return del.sync('docs').then(function(cb) {
     return cache.clearAll(cb);
   });
 })
 
-gulp.task('clean:dist', function() {
-  return del.sync(['dist/**/*', '!dist/img', '!dist/img/**/*']);
+gulp.task('clean:docs', function() {
+  return del.sync(['docs/**/*', '!docs/img', '!docs/img/**/*']);
 });
 
 // Build Sequences
@@ -101,7 +101,7 @@ gulp.task('default', function(callback) {
 
 gulp.task('build', function(callback) {
   runSequence(
-    'clean:dist',
+    'clean:docs',
     'sass',
     ['useref', 'images', 'fonts'],
     callback
@@ -127,13 +127,22 @@ gulp.task("resize", function () {
     .pipe(responsive({
       "*.jpg": [{
         width: 1200,   
-        suffix: "-lg"
+        suffix: "-lg",
+        quality: 80
       }, {
         width: 800,
-        suffix: '-md'
+        height: 800,
+        crop: true,
+        gravity: "SouthEast",
+        suffix: '-md',
+        quality:80
       },{
-        width: 500,
-        suffix: '-sm'
+        width: 800,
+        height: 800,
+        crop: true,
+        gravity: "SouthEast",
+        suffix: '-sm',
+        quality: 70
       }]
     }))
     .pipe(gulp.dest("app/img"));
