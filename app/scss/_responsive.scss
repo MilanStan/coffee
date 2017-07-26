@@ -76,6 +76,8 @@
         background-image: url("../img/background-lighter-md.jpg");
         #cup1,
         #cup2 {
+            width: $cup-width-s;
+            height: $cup-height-s;
             opacity: 1;
         }
         h1 {
@@ -123,11 +125,7 @@
 @media only screen and(max-width:499px) {
     header {
         background-image:url("../img/background-lighter-sm.jpg");
-        #cup1,
-        #cup2 {
-            width: $cup-width-s;
-            height: $cup-height-s;
-        }
+        
         #intro {
             h1 {
                 font-size: 33px;
@@ -140,17 +138,25 @@
         }
     }
     .main-content-wrapper{
-        background-image:url(../img/coffee-bg-sm.jpg);
+        background-image:none;
+        background-color: rgb(242, 218, 197);
+        padding:50px 0;
+    }
+    #content-wrapper{
+        padding:0 20px;
     }
     .item-wrapper {
         background-image: none;
     }
     .image-container img {
         width: 85%;
-        margin: 20px 0;
+        margin: 0 20px;
     }
     .data-container {
         padding: 0;
         text-align: center;
+        .name{
+            margin-top:20px;
+        }
     }
 }

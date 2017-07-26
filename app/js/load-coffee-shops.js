@@ -241,9 +241,10 @@ function introTransform() {
     $("#intro h1").css("font-size", "24px");
     $("#intro h2").css("display", "none");
     $("#intro p").css("display", "none");
+    $("#intro").css({"top":"0","transform":"translateY(0)"});
     $("header").css({
-        "height": "8vh",
-        "min-height": "50px"
+        "height": "66px",
+        "padding": "20px 0"
     });
     $("#background-hover").css("background-color", "rgb(72,28,22)");
     $("header h1").css("margin-bottom", "0px");
