@@ -254,9 +254,18 @@ function introTransform() {
 
 }
 function imageLoadingAnimation() {
+    //thumbnails
     $(".image-container img").css("visibility", "hidden");
 
     $(".image-container img").on('load', function () {
+        $(this).css("visibility", "visible");
+        //$(".image-container").css("background-image", "none");
+    });
+
+    //feather lightbox loader
+    $(".featherlight-content img").css("visibility", "hidden");
+
+    $(".featherlight-content img").on('load', function () {
         $(this).css("visibility", "visible");
         //$(".image-container").css("background-image", "none");
     });

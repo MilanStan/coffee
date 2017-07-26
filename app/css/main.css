@@ -237,6 +237,13 @@ header {
   font-weight: bold;
   color: darkred; }
 
+.featherlight .featherlight-content {
+  background-image: url(../img/loader-icon.svg);
+  background-size: 120px 120px;
+  background-repeat: no-repeat;
+  min-height: 120px;
+  min-width: 120px; }
+
 @media only screen and (max-width: 1199px) {
   header {
     background-image: url("../img/background-lighter-lg.jpg"); }
