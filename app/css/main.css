@@ -245,6 +245,11 @@ header {
   min-height: 120px;
   min-width: 120px; }
 
+.featherlight .featherlight-close-icon {
+  background: rgba(255, 255, 255, 0.5);
+  font-size: 30px;
+  font-weight: bold; }
+
 @media only screen and (max-width: 1199px) {
   header {
     background-image: url("../img/background-lighter-lg.jpg"); }
@@ -317,7 +322,7 @@ header {
   .image-container {
     text-align: center; }
   .image-container img {
-    width: 70%;
+    width: 60%;
     margin: 50px 0;
     -ms-transform: rotate(0deg) scale(1);
         transform: rotate(0deg) scale(1);
