@@ -85,7 +85,13 @@ header{
     background-origin: content-box;
     padding: 0 15px 0 30px;
     border-top:1px dotted brown;
+    transform:translateY(0px);
     transition: 0.5s;
+    &.invisible{
+        opacity:0;
+        transform: translateY(100px);
+    }
+
     a{
         color: rgb(72,28,22);
         &:hover{

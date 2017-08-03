@@ -135,7 +135,13 @@ header {
   background-origin: content-box;
   padding: 0 15px 0 30px;
   border-top: 1px dotted brown;
+  -ms-transform: translateY(0px);
+      transform: translateY(0px);
   transition: 0.5s; }
+  .item-wrapper.invisible {
+    opacity: 0;
+    -ms-transform: translateY(100px);
+        transform: translateY(100px); }
   .item-wrapper a {
     color: #481c16; }
     .item-wrapper a:hover {
@@ -364,7 +370,8 @@ header {
     padding: 0;
     text-align: center; }
     .data-container .name {
-      margin-top: 20px; } }
+      margin-top: 20px;
+      font-size: 20px; } }
 
 @keyframes cup1 {
   0% {

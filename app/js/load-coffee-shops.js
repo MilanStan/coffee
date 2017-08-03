@@ -3,6 +3,7 @@
 var caffees;
 var intro = document.getElementById("intro");
 var output = document.getElementById("content-wrapper");
+var coffeeItemsDivs;
 
 
 $(document).ready(function () {
@@ -15,6 +16,9 @@ $(document).ready(function () {
         $("#cup2").addClass("cup2-animation");
         $("#intro").addClass("intro-animation");
     }
+
+    //animate revealing coffee items
+
 });
 
 //Get user location
@@ -123,6 +127,10 @@ function printData(data) {
     output.innerHTML = htmlContent;
 
     imageLoadingAnimation();
+
+    //we get all divs with coffee item in order to animate revealing
+    coffeeItemsDivs=$(".item-wrapper");
+    coffeeItemsDivs.addClass("invisible");
 
     /*
         var printContent = "";
@@ -252,15 +260,23 @@ function introTransform() {
     $("#cup2").css("display", "none");
 
     $(".main-content-wrapper").css("display", "block");
-
+        
 }
 function imageLoadingAnimation() {
     //thumbnails
     $(".image-container img").css("visibility", "hidden");
 
     $(".image-container img").on('load', function () {
+        
         $(this).css("visibility", "visible");
-        //$(".image-container").css("background-image", "none");
+        
+
+        setTimeout(function(){
+            Waypoint.refreshAll();
+            animateRevealing();
+        }, 300);
+        
+                
     });
 
     //feather lightbox loader
@@ -270,4 +286,17 @@ function imageLoadingAnimation() {
         $(this).css("visibility", "visible");
         //$(".image-container").css("background-image", "none");
     });
+}
+
+//Animate revealing of coffees
+function animateRevealing(){
+    for(i=0; i<coffeeItemsDivs.length;i++){
+        new Waypoint({
+            element: coffeeItemsDivs[i],
+            handler: function (direction) {
+                $(this.element).removeClass("invisible");
+            },
+            offset: '90%'
+        });
+    }
 }
