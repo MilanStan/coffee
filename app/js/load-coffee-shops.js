@@ -129,8 +129,25 @@ function printData(data) {
     imageLoadingAnimation();
 
     //we get all divs with coffee item in order to animate revealing
-    coffeeItemsDivs=$(".item-wrapper");
+    coffeeItemsDivs = $(".item-wrapper");
     coffeeItemsDivs.addClass("invisible");
+    
+    //for petlja za svaku promenu veličine bilo kog .item-wrapper div-a osvežava waypoint trigger points
+    animateRevealing();
+    for (i = 0; i < coffeeItemsDivs.length; i++) {
+        $(coffeeItemsDivs[i]).resize(function(){
+
+            console.log("promenjeno"+$(coffeeItemsDivs[i]));
+            Waypoint.refreshAll();
+        });
+    }
+
+
+    /*setTimeout(function () {
+        console.log("Posle broj divova: " + $(".item-wrapper").length);
+        console.log("Posle timeout-a" + $("#content-wrapper").height());
+        animateRevealing();
+    }, 500);*/
 
     /*
         var printContent = "";
@@ -249,7 +266,10 @@ function introTransform() {
     $("#intro h1").css("font-size", "24px");
     $("#intro h2").css("display", "none");
     $("#intro p").css("display", "none");
-    $("#intro").css({"top":"0","transform":"translateY(0)"});
+    $("#intro").css({
+        "top": "0",
+        "transform": "translateY(0)"
+    });
     $("header").css({
         "height": "66px",
         "padding": "20px 0"
@@ -260,23 +280,24 @@ function introTransform() {
     $("#cup2").css("display", "none");
 
     $(".main-content-wrapper").css("display", "block");
-        
+
+    //ovo je potrebno jer tranzicija smanjivanja visine headera traje 1500ms koliko treba da se ustale visine elemenata
+    setTimeout(function(){
+        Waypoint.refreshAll();
+    },1500);
+
 }
+
 function imageLoadingAnimation() {
     //thumbnails
     $(".image-container img").css("visibility", "hidden");
 
     $(".image-container img").on('load', function () {
-        
-        $(this).css("visibility", "visible");
-        
 
-        setTimeout(function(){
-            Waypoint.refreshAll();
-            animateRevealing();
-        }, 300);
-        
-                
+        $(this).css("visibility", "visible");
+
+        //Waypoint.refreshAll();
+
     });
 
     //feather lightbox loader
@@ -289,14 +310,15 @@ function imageLoadingAnimation() {
 }
 
 //Animate revealing of coffees
-function animateRevealing(){
-    for(i=0; i<coffeeItemsDivs.length;i++){
+function animateRevealing() {
+    for (i = 0; i < coffeeItemsDivs.length; i++) {
         new Waypoint({
             element: coffeeItemsDivs[i],
             handler: function (direction) {
                 $(this.element).removeClass("invisible");
             },
-            offset: '90%'
+            //može 100% jer smo primenili transform: translateY(100px) na element koji se posmatra
+            offset: '100%'
         });
     }
 }
