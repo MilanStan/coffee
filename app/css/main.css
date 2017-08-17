@@ -223,6 +223,12 @@ header {
 #content-wrapper {
   padding: 20px;
   position: relative; }
+  #content-wrapper.loading {
+    background-image: url(../img/loader-icon.svg);
+    background-repeat: no-repeat;
+    background-position: center 50px;
+    background-size: 120px 120px;
+    height: 200px; }
 
 .sort-wrapper {
   margin: 20px auto; }

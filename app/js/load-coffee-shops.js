@@ -35,6 +35,7 @@ function geoSuccess(position) {
     var latitude = position.coords.latitude;
     var longitude = position.coords.longitude;
 
+    $("#content-wrapper").addClass("loading");
     loadCoffees(buildUrl(latitude, longitude));
     introTransform();
 }
@@ -93,6 +94,7 @@ function loadCoffees(url) {
             data = response;
             //get array of objects
             caffees = response.response.groups[0].items;
+            $("#content-wrapper").removeClass("loading");
 
             if (caffees.length > 0) {
                 printData(caffees);
@@ -102,11 +104,14 @@ function loadCoffees(url) {
             }
         },
         failure: function () {
-            alert("Something is wrong!");
+            output.innerHTML = '<p class="no-coffees">Something is wrong!<br>Try later!</p>';
+                $("#sort-criteria").attr("disabled", "disabled");
+                $("#content-wrapper").removeClass("loading");
         },
         error: function (response) {
-            alert("Something is wrong with data connection!");
-
+            output.innerHTML = '<p class="no-coffees">Something is wrong with database connection!<br>Try later!</p>';
+                $("#sort-criteria").attr("disabled", "disabled");;
+                $("#content-wrapper").removeClass("loading");
         }
 
     });
