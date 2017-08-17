@@ -76,7 +76,7 @@ function buildUrl(latitude, longitude) {
     var photos = "venuePhotos=1";
     var open = "openNow=1";
     var distance = "sortByDistance=1";
-    var limit = "limit=10";
+    var limit = "limit=20";
 
     var url = baseUrl + "&" + ll + "&" + radius + "&" + section + "&" + photos + "&" + open + "&" + distance + "&" + "&" + limit + "&" + auth + "&" + version;
     console.log("Url adresa je: " + url);
@@ -295,6 +295,7 @@ function imageLoadingAnimation() {
     $(".image-container img").on('load', function () {
 
         $(this).css("visibility", "visible");
+        $(".image-container a").featherlight();
 
         //Waypoint.refreshAll();
 
