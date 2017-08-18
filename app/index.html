@@ -40,6 +40,13 @@
             </div>
         </div>
     </section>
+    <section id="map-container">
+        <div class="map-wrapper">
+            <h4 class="map-name"></h4>
+            <button class="map-close" aria-label="Close">✕</button>
+            <div id="map"></div>
+        </div>
+    </section>
 
     <script type="text/template" id="item-container">
         {{#items}}
@@ -80,6 +87,9 @@
                     </p>
                     <p class="distance"><span class="label">Distance: </span> {{venue.location.distance}}m
                     </p>
+                    <p class="map" data-latitude="{{venue.location.lat}}" data-longitude="{{venue.location.lng}}" data-name="{{venue.name}}" data-address="{{venue.location.address}}">
+                        Show in map
+                    </p> 
                 </div>
             </div>
 
@@ -93,6 +103,8 @@
     <script src="js/mustache.js"></script>
     <script src="js/jquery.waypoints.min.js"></script>
     <script src="js/jquery.resize.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_8bvYObetYEQLhqdygEBVxsQ4tbbxT7I"
+        async defer></script>
     <script src="js/load-coffee-shops.js"></script>
     <!--endbuild-->
 </body>

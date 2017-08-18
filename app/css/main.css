@@ -80,7 +80,9 @@ header {
     height: 100%;
     top: 0;
     transition: 1.5s; }
-  header h1, header h2, header p {
+  header h1,
+  header h2,
+  header p {
     text-align: center;
     color: #963a2e;
     font-weight: bold;
@@ -96,7 +98,8 @@ header {
     margin: 20px 0;
     padding: 0 50px;
     text-transform: none; }
-  header h2, header p {
+  header h2,
+  header p {
     color: #481c16; }
   header #reload {
     background-color: darkred;
@@ -164,7 +167,8 @@ header {
   border-style: dotted;
   border-color: brown; }
 
-.item-wrapper:nth-child(1), .item-wrapper:nth-child(2) {
+.item-wrapper:nth-child(1),
+.item-wrapper:nth-child(2) {
   border-top: none; }
 
 .item-content {
@@ -262,6 +266,53 @@ header {
   background: rgba(255, 255, 255, 0.5);
   font-size: 30px;
   font-weight: bold; }
+
+#map-container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: none; }
+  #map-container .map-wrapper {
+    width: 95%;
+    height: 95vh;
+    margin: 2.5vh auto;
+    padding: 70px 10px 10px;
+    border-radius: 10px;
+    background-color: white;
+    position: relative; }
+    #map-container .map-wrapper .map-name {
+      position: absolute;
+      margin-top: 24px;
+      display: block;
+      width: 100%;
+      text-align: center;
+      top: 0;
+      text-align: center;
+      color: #963a2e;
+      font-weight: bold;
+      text-transform: uppercase;
+      padding: 0 50px;
+      font-family: 'Kaushan Script', cursive;
+      text-shadow: 2px 0 0 #f1d8c3, 0 2px 0 #f1d8c3, -2px 0 0 #f1d8c3, 0-2px 0 #f1d8c3, 0 0 10px black;
+      font-size: 20px; }
+    #map-container .map-wrapper .map-close {
+      position: absolute;
+      right: 0;
+      top: 0;
+      background-color: transparent;
+      border: none;
+      font-size: 30px;
+      z-index: 100; }
+    #map-container .map-wrapper #map {
+      height: 100%; }
+
+.data-container p.map {
+  cursor: pointer;
+  color: darkblue;
+  display: inline-block; }
 
 @media only screen and (max-width: 1199px) {
   header {

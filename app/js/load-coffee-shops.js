@@ -1,5 +1,7 @@
 //Global variables
 
+var latitude;
+var longitude;
 var caffees;
 var intro = document.getElementById("intro");
 var output = document.getElementById("content-wrapper");
@@ -17,8 +19,27 @@ $(document).ready(function () {
         $("#intro").addClass("intro-animation");
     }
 
-    //animate revealing coffee items
+    //show map
+    $(document).on('click', '.map', function () {
+        console.log(this);
+        $("#map-container").fadeIn(500);
+        initMap(this);
+    });
 
+    //close map    
+    $(".map-close").on('click', function () {
+        $("#map-container").fadeOut(500);
+    });
+    /*$(".map-container").click(function(e){
+        if(e.target===$("#map")){
+            console.log("jednako");
+        }
+    });*/
+    $("#map-container").click(function (e) {
+        $(this).fadeOut(500);
+    }).on('click', ".map-wrapper", function(e){
+        e.stopPropagation();
+    });
 });
 
 //Get user location
@@ -32,8 +53,8 @@ function geoFindMe() {
 }
 
 function geoSuccess(position) {
-    var latitude = position.coords.latitude;
-    var longitude = position.coords.longitude;
+    latitude = position.coords.latitude;
+    longitude = position.coords.longitude;
 
     $("#content-wrapper").addClass("loading");
     loadCoffees(buildUrl(latitude, longitude));
@@ -105,13 +126,13 @@ function loadCoffees(url) {
         },
         failure: function () {
             output.innerHTML = '<p class="no-coffees">Something is wrong!<br>Try later!</p>';
-                $("#sort-criteria").attr("disabled", "disabled");
-                $("#content-wrapper").removeClass("loading");
+            $("#sort-criteria").attr("disabled", "disabled");
+            $("#content-wrapper").removeClass("loading");
         },
         error: function (response) {
             output.innerHTML = '<p class="no-coffees">Something is wrong with database connection!<br>Try later!</p>';
-                $("#sort-criteria").attr("disabled", "disabled");;
-                $("#content-wrapper").removeClass("loading");
+            $("#sort-criteria").attr("disabled", "disabled");;
+            $("#content-wrapper").removeClass("loading");
         }
 
     });
@@ -136,13 +157,13 @@ function printData(data) {
     //we get all divs with coffee item in order to animate revealing
     coffeeItemsDivs = $(".item-wrapper");
     coffeeItemsDivs.addClass("invisible");
-    
+
     //for petlja za svaku promenu veličine bilo kog .item-wrapper div-a osvežava waypoint trigger points
     animateRevealing();
     for (i = 0; i < coffeeItemsDivs.length; i++) {
-        $(coffeeItemsDivs[i]).resize(function(){
+        $(coffeeItemsDivs[i]).resize(function () {
 
-            console.log("promenjeno"+$(coffeeItemsDivs[i]));
+            console.log("promenjeno" + $(coffeeItemsDivs[i]));
             Waypoint.refreshAll();
         });
     }
@@ -287,9 +308,9 @@ function introTransform() {
     $(".main-content-wrapper").css("display", "block");
 
     //ovo je potrebno jer tranzicija smanjivanja visine headera traje 1500ms koliko treba da se ustale visine elemenata
-    setTimeout(function(){
+    setTimeout(function () {
         Waypoint.refreshAll();
-    },1500);
+    }, 1500);
 
 }
 
@@ -327,4 +348,58 @@ function animateRevealing() {
             offset: '100%'
         });
     }
+}
+
+function initMap(e) { //e parametar pass instance of coffee
+    //next row get name and address of current coffee for which we call map
+    getMapName(e);
+
+    //calling map directions
+    var startPoint = {
+        lat: latitude,
+        lng: longitude
+    };
+    console.log(e);
+    var endLat = parseFloat($(e).attr("data-latitude"));
+    console.log(endLat);
+    var endLon = parseFloat($(e).attr("data-longitude"));
+    console.log(endLon);
+    var endPoint = {
+        lat: endLat,
+        lng: endLon
+    };
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+        center: startPoint,
+        zoom: 10
+    });
+
+    var directionsDisplay = new google.maps.DirectionsRenderer({
+        map: map
+    });
+
+    // Set destination, origin and travel mode.
+    var request = {
+        destination: endPoint,
+        origin: startPoint,
+        travelMode: 'WALKING'
+    };
+
+    // Pass the directions request to the directions service.
+    var directionsService = new google.maps.DirectionsService();
+    directionsService.route(request, function (response, status) {
+        if (status == 'OK') {
+            // Display the route on the map.
+            directionsDisplay.setDirections(response);
+        }
+    });
+}
+
+function getMapName(e) {
+    var mapCoffeeName = $(e).attr("data-name");
+    console.log(mapCoffeeName);
+    var mapCoffeeAddress = $(e).attr("data-address");
+    console.log(mapCoffeeAddress);
+    var mapName = mapCoffeeName + ", " + mapCoffeeAddress;
+    $(".map-name").text(mapName);
 }
