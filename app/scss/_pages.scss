@@ -9,7 +9,7 @@ header {
     #intro {
         @include vertical-align();
         text-align: center;
-        z-index: 1000;
+        z-index: 10;
     }
     #cup1 {
         @include cup();
@@ -256,11 +256,12 @@ header {
     right: 0;
     background-color: rgba(0, 0, 0, 0.7);
     display: none;
+    z-index:50;
     .map-wrapper {
         width: 95%;
         height: 95vh;
         margin: 2.5vh auto;
-        padding: 70px 10px 10px;
+        padding: 70px 1.5% 15px;
         border-radius: 10px;
         background-color: white;
         position: relative;
@@ -268,7 +269,7 @@ header {
             position: absolute;
             margin-top:24px;
             display: block;
-            width: 100%;
+            width: 97%;
             text-align: center;
             top: 0;
             @include title();
@@ -294,4 +295,5 @@ header {
             cursor:pointer;
             color: darkblue;
             display:inline-block;
+            font-size:16px;
         }
