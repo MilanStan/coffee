@@ -87,6 +87,11 @@ header {
 .main-items-wrapper {
     background-color: rgba($light-coffee, 0.8);
 }
+#content-wrapper{
+    display:flex;
+    flex-wrap: wrap;
+}
+
 
 .item-wrapper {
     background-image: url(../img/cup.png);

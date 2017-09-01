@@ -131,6 +131,12 @@ header {
 .main-items-wrapper {
   background-color: rgba(241, 216, 195, 0.8); }
 
+#content-wrapper {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap; }
+
 .item-wrapper {
   background-image: url(../img/cup.png);
   background-size: 20% auto;
