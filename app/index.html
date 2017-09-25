@@ -47,6 +47,22 @@
             <div id="map"></div>
         </div>
     </section>
+    <section id="map-picker-container">        
+        <div id="map-pick">            
+        </div>
+        <div id="map-picker-text-wrapper">
+                <h4 class="map-name">Pick or drag your location!</h4>
+                <div id="place-input-container">
+                    <input id="place-input" type="text" placeholder="Enter a location">
+                </div>
+        </div>
+        <div id="infowindow-content">
+            <img src="" width="16" height="16" id="place-icon">
+            <span id="place-name" class="title"></span><br>
+            <span id="place-address"></span>
+        </div>
+        <button id="lat-lon-submit" class="btn button">Send</button>
+    </section>
 
     <script type="text/template" id="item-container">
         {{#items}}
@@ -60,11 +76,8 @@
                         <div class="image-icon">
                             <span class="glyphicons glyphicon-plus"></span>
                         </div>
-                    </a>
-                    {{/venue.featuredPhotos}} 
-                    {{^venue.featuredPhotos}}
-                    <img src="img/no-image.jpg" alt="no image"> 
-                     {{/venue.featuredPhotos}}
+                    </a> {{/venue.featuredPhotos}} {{^venue.featuredPhotos}}
+                    <img src="img/no-image.jpg" alt="no image"> {{/venue.featuredPhotos}}
                 </div>
                 <div class="col-sm-7 data-container">
                     {{#venue.url}}
@@ -87,9 +100,10 @@
                     </p>
                     <p class="distance"><span class="label">Distance: </span> {{venue.location.distance}}m
                     </p>
-                    <p class="map" data-latitude="{{venue.location.lat}}" data-longitude="{{venue.location.lng}}" data-name="{{venue.name}}" data-address="{{venue.location.address}}">
+                    <p class="map" data-latitude="{{venue.location.lat}}" data-longitude="{{venue.location.lng}}" data-name="{{venue.name}}"
+                        data-address="{{venue.location.address}}">
                         Show in map
-                    </p> 
+                    </p>
                 </div>
             </div>
 
@@ -98,8 +112,8 @@
     </script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_8bvYObetYEQLhqdygEBVxsQ4tbbxT7I"
-        async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_8bvYObetYEQLhqdygEBVxsQ4tbbxT7I&libraries=places" async
+        defer></script>
     <!-- build:js js/combined.js -->
     <script src="js/featherlight.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/mustache.js"></script>

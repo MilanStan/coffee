@@ -37,7 +37,7 @@ $(document).ready(function () {
     });*/
     $("#map-container").click(function (e) {
         $(this).fadeOut(500);
-    }).on('click', ".map-wrapper", function(e){
+    }).on('click', ".map-wrapper", function (e) {
         e.stopPropagation();
     });
 });
@@ -46,6 +46,7 @@ $(document).ready(function () {
 function geoFindMe() {
     if (!navigator.geolocation) {
         intro.append("<p>Geolocation is not supported by your browser</p>");
+        chooseLocation();
         return;
     }
 
@@ -62,7 +63,7 @@ function geoSuccess(position) {
 }
 
 function geoError(error) {
-    switch (error.code) {
+    /*switch (error.code) {
         case error.PERMISSION_DENIED:
             intro.innerHTML = '<p style="margin-top:0">You denied the request for Geolocation.<br>' +
                 'You must accept the request for geolocation in order to app work.</p>' +
@@ -80,7 +81,8 @@ function geoError(error) {
         case error.UNKNOWN_ERROR:
             intro.innerHTML = "<p>An unknown error occurred.</p>"
             break;
-    }
+    }*/
+    chooseLocation();
 }
 
 
@@ -356,8 +358,8 @@ function initMap(e) { //e parametar pass instance of coffee
 
     //calling map directions
     var startPoint = {
-        lat: latitude,
-        lng: longitude
+        lat: parseFloat(latitude),
+        lng: parseFloat(longitude)
     };
     console.log(e);
     var endLat = parseFloat($(e).attr("data-latitude"));
@@ -394,7 +396,7 @@ function initMap(e) { //e parametar pass instance of coffee
         }
     });
 }
-
+//Print name and address of coffee above map
 function getMapName(e) {
     var mapCoffeeName = $(e).attr("data-name");
     console.log(mapCoffeeName);
@@ -403,3 +405,88 @@ function getMapName(e) {
     var mapName = mapCoffeeName + ", " + mapCoffeeAddress;
     $(".map-name").text(mapName);
 }
+
+
+//MAP PICKER DIV
+function chooseLocation() {
+    $("#map-picker-container").fadeIn('slow',function(){
+        $("#map-pick").fadeIn('slow');
+            $("#map-picker-text-wrapper").addClass("expanded");
+    });
+    //$("#map-pick").addClass("expanded");
+
+    var myLatlng = new google.maps.LatLng(44.095475, 21.027832);
+    var mapOptions = {
+        zoom: 7,
+        center: myLatlng
+    }
+    var map = new google.maps.Map(document.getElementById("map-pick"), mapOptions);
+
+    // Place a draggable marker on the map
+    var marker = new google.maps.Marker({
+        position: myLatlng,
+        map: map,
+        draggable: true,
+        title: "Drag me!"
+    });
+    //get lat and long where marker is dragged down
+    google.maps.event.addListener(marker, 'dragend', function (event) {
+        //console.log(this.getPosition().lat().toFixed(6));
+        //console.log(this.getPosition().lng().toFixed(6));
+        setCoorLoad();
+        console.log("Pomeren je marker");
+    });
+    //auto complete input text
+    var input = document.getElementById('place-input');
+    var autocomplete = new google.maps.places.Autocomplete(input);
+
+    //inserting additional element to google map controls
+    var searchControl=document.getElementById('map-picker-text-wrapper');
+    var latLonSubmit=document.getElementById('lat-lon-submit');
+    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(searchControl);
+    map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(latLonSubmit);
+
+    //autocomplete.bindTo('bounds', map);
+    var infowindow = new google.maps.InfoWindow();
+    var infowindowContent = document.getElementById('infowindow-content');
+    infowindow.setContent(infowindowContent);
+
+    autocomplete.addListener('place_changed', function () {
+        infowindow.close();
+        //marker.setVisible(false);
+        var place = autocomplete.getPlace();
+        if (!place.geometry) {
+            // User entered the name of a Place that was not suggested and
+            // pressed the Enter key, or the Place Details request failed.
+            window.alert("No details available for input: '" + place.name + "'");
+            return;
+        }
+
+        // If the place has a geometry, then present it on a map.
+        if (place.geometry.viewport) {
+            map.fitBounds(place.geometry.viewport);
+        } else {
+            map.setCenter(place.geometry.location);
+            map.setZoom(17); // Why 17? Because it looks good.
+        }
+        marker.setPosition(place.geometry.location);
+        marker.setVisible(true);
+        console.log("Izabrana lokacija");
+        setCoorLoad();
+    });
+    function setCoorLoad(){
+        latitude=marker.getPosition().lat().toFixed(6);
+        longitude=marker.getPosition().lng().toFixed(6);
+        console.log(latitude, longitude);
+    }
+    setCoorLoad();
+}
+$("#lat-lon-submit").click(function(){
+    $("#map-picker-container").fadeOut("slow");
+    $("#content-wrapper").addClass("loading");
+    setTimeout(function(){
+        loadCoffees(buildUrl(latitude, longitude));
+        introTransform();
+    },1000);
+    
+});
