@@ -91,6 +91,7 @@
     #content-wrapper {
         display: flex;
         flex-wrap: wrap;
+        justify-content: flex-end; //mora da bi bili u prvoj koloni kada ih ima neparan broj
     }
 
     .item-wrapper {
@@ -174,6 +175,7 @@
 
     .data-container {
         padding-top: 30px;
+        font-family: 'Kaushan Script', cursive;
         p {
             font-size: 18px;
             line-height: 1.1;
@@ -215,6 +217,7 @@
 
     .sort-wrapper {
         margin: 20px auto;
+        font-family: 'Kaushan Script', cursive;
         span {
             font-size: 20px;
             font-weight: bold;
@@ -353,8 +356,8 @@
                 &.expanded {
                     width: 50%;
                 }
-                &.visible{
-                    opacity:1;
+                &.visible {
+                    opacity: 1;
                 }
                 #place-input {
                     width: 100%;

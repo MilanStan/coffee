@@ -135,7 +135,9 @@ header {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
-      flex-wrap: wrap; }
+      flex-wrap: wrap;
+  -ms-flex-pack: end;
+      justify-content: flex-end; }
 
 .item-wrapper {
   background-image: url(../img/cup.png);
@@ -206,7 +208,8 @@ header {
       text-shadow: 0 0 20px black; }
 
 .data-container {
-  padding-top: 30px; }
+  padding-top: 30px;
+  font-family: 'Kaushan Script', cursive; }
   .data-container p {
     font-size: 18px;
     line-height: 1.1;
@@ -241,7 +244,8 @@ header {
     height: 200px; }
 
 .sort-wrapper {
-  margin: 20px auto; }
+  margin: 20px auto;
+  font-family: 'Kaushan Script', cursive; }
   .sort-wrapper span {
     font-size: 20px;
     font-weight: bold;
@@ -471,6 +475,9 @@ header {
       font-size: 30px; }
   .main-content-wrapper {
     background-image: url(../img/coffee-bg-md.jpg); }
+  #content-wrapper {
+    -ms-flex-pack: center;
+        justify-content: center; }
   .list {
     font-size: 24px; }
   .image-container {

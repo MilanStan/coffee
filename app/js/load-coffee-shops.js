@@ -490,7 +490,11 @@ function chooseLocation() {
 }
 //submit of location when is manually choosed
 $("#lat-lon-submit").click(function () {
-    $("#map-picker-container").fadeTo('fast', 0);
+    $("#map-picker-container").fadeTo('fast',0, function(){
+        setTimeout(function(){
+            $("#map-picker-container").css("display", "none");
+        },2000);
+    });
     $("#content-wrapper").addClass("loading");
     setTimeout(function () {
         introTransform();
