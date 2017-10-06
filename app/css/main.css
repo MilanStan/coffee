@@ -257,6 +257,7 @@ header {
 
 .no-coffees {
   text-align: center;
+  font-family: 'Kaushan Script', cursive;
   font-size: 30px;
   font-weight: bold;
   color: darkred;
@@ -327,42 +328,81 @@ header {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  padding: 10px;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.7);
   display: none;
   z-index: 100;
   transition: all 3s; }
-
-#map-pick {
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0; }
-
-#map-picker-text-wrapper {
-  padding: 20px;
-  margin: 10px 14px;
-  background-color: rgba(72, 28, 22, 0.7);
-  transition: 2s;
-  width: 300px; }
-  #map-picker-text-wrapper.expanded {
-    width: 50%; }
-  #map-picker-text-wrapper .map-name {
-    color: white;
-    margin-bottom: 10px; }
-  #map-picker-text-wrapper #place-input-container #place-input {
-    width: 100%;
-    font-size: 16px; }
-
-#lat-lon-submit {
-  background-color: rgba(72, 28, 22, 0.8);
-  font-weight: bold;
-  font-size: 20px;
-  color: white;
-  margin-bottom: 20px;
-  text-transform: uppercase;
-  letter-spacing: 2px; }
+  #map-picker-container .map-picker-wrapper {
+    width: 95%;
+    height: 95vh;
+    margin: 2.5vh auto;
+    padding: 70px 1.5% 15px;
+    border-radius: 10px;
+    background-color: white;
+    position: relative; }
+    #map-picker-container .map-picker-wrapper #map-pick {
+      height: 100%; }
+    #map-picker-container .map-picker-wrapper .map-name {
+      position: absolute;
+      margin-top: 24px;
+      display: block;
+      width: 97%;
+      text-align: center;
+      top: 0;
+      text-align: center;
+      color: #963a2e;
+      font-weight: bold;
+      text-transform: uppercase;
+      padding: 0 50px;
+      font-family: 'Kaushan Script', cursive;
+      text-shadow: 2px 0 0 #f1d8c3, 0 2px 0 #f1d8c3, -2px 0 0 #f1d8c3, 0-2px 0 #f1d8c3, 0 0 10px black;
+      font-size: 20px; }
+    #map-picker-container .map-picker-wrapper #place-input-container {
+      position: absolute;
+      right: 1.5%;
+      top: 70px;
+      padding: 10px;
+      background-color: white;
+      opacity: 0;
+      transition: 1s;
+      width: 180px;
+      border-bottom-left-radius: 10px;
+      font-family: 'Kaushan Script', cursive; }
+      #map-picker-container .map-picker-wrapper #place-input-container.expanded {
+        width: 50%; }
+      #map-picker-container .map-picker-wrapper #place-input-container.visible {
+        opacity: 1; }
+      #map-picker-container .map-picker-wrapper #place-input-container #place-input {
+        width: 100%;
+        font-size: 16px;
+        color: #963a2e;
+        text-transform: uppercase;
+        padding: 5px;
+        border-radius: 5px;
+        border: 1px solid #963a2e; }
+        #map-picker-container .map-picker-wrapper #place-input-container #place-input::-webkit-input-placeholder {
+          /* Chrome/Opera/Safari */
+          color: #963a2e; }
+        #map-picker-container .map-picker-wrapper #place-input-container #place-input::-moz-placeholder {
+          /* Firefox 19+ */
+          color: #963a2e; }
+        #map-picker-container .map-picker-wrapper #place-input-container #place-input:-ms-input-placeholder {
+          /* IE 10+ */
+          color: #963a2e; }
+        #map-picker-container .map-picker-wrapper #place-input-container #place-input:-moz-placeholder {
+          /* Firefox 18- */
+          color: #963a2e; }
+    #map-picker-container .map-picker-wrapper #lat-lon-submit {
+      background-color: rgba(72, 28, 22, 0.8);
+      font-family: 'Kaushan Script', cursive;
+      font-weight: bold;
+      font-size: 18px;
+      color: white;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 2px; }
 
 @media only screen and (max-width: 1199px) {
   header {
@@ -454,6 +494,13 @@ header {
     padding-top: 0;
     padding-right: 120px; } }
 
+#map-picker-container .map-picker-wrapper #place-input-container.expanded {
+  width: 70%; }
+
+@media only screen and (max-width: 699px) {
+  #map-picker-container .map-picker-wrapper .map-name {
+    margin-top: 20px; } }
+
 @media only screen and (max-width: 499px) {
   header {
     background-image: url("../img/background-lighter-sm.jpg"); }
@@ -479,7 +526,10 @@ header {
     text-align: center; }
     .data-container .name {
       margin-top: 20px;
-      font-size: 20px; } }
+      font-size: 20px; }
+  #map-picker-container .map-picker-wrapper #place-input-container.expanded {
+    width: 100%;
+    z-index: 100 !important; } }
 
 @keyframes cup1 {
   0% {

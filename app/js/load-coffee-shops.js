@@ -409,9 +409,15 @@ function getMapName(e) {
 
 //MAP PICKER DIV
 function chooseLocation() {
-    $("#map-picker-container").fadeIn('slow',function(){
+    $("#map-picker-container").fadeIn('slow', function () {
         $("#map-pick").fadeIn('slow');
-            $("#map-picker-text-wrapper").addClass("expanded");
+        setTimeout(function () {
+            $("#place-input-container").addClass("expanded visible");
+            //mora ovako da se pozove #place-input jer smo ga dodelili kao google map kontrolu u redu 450
+            //Takođe moralo je prvi put da se eksplicitno dodeli klasa expanded nije bilo dovoljno
+            //samo izazvati focus događaj verovatno iz istog razloga
+            $(searchControl).find("#place-input").focus();
+        }, 2000);
     });
     //$("#map-pick").addClass("expanded");
 
@@ -441,8 +447,8 @@ function chooseLocation() {
     var autocomplete = new google.maps.places.Autocomplete(input);
 
     //inserting additional element to google map controls
-    var searchControl=document.getElementById('map-picker-text-wrapper');
-    var latLonSubmit=document.getElementById('lat-lon-submit');
+    var searchControl = document.getElementById('place-input-container');
+    var latLonSubmit = document.getElementById('lat-lon-submit');
     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(searchControl);
     map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(latLonSubmit);
 
@@ -474,19 +480,34 @@ function chooseLocation() {
         console.log("Izabrana lokacija");
         setCoorLoad();
     });
-    function setCoorLoad(){
-        latitude=marker.getPosition().lat().toFixed(6);
-        longitude=marker.getPosition().lng().toFixed(6);
+
+    function setCoorLoad() {
+        latitude = marker.getPosition().lat().toFixed(6);
+        longitude = marker.getPosition().lng().toFixed(6);
         console.log(latitude, longitude);
     }
     setCoorLoad();
 }
-$("#lat-lon-submit").click(function(){
-    $("#map-picker-container").fadeOut("slow");
+//submit of location when is manually choosed
+$("#lat-lon-submit").click(function () {
+    $("#map-picker-container").fadeTo('fast', 0);
     $("#content-wrapper").addClass("loading");
-    setTimeout(function(){
-        loadCoffees(buildUrl(latitude, longitude));
+    setTimeout(function () {
         introTransform();
-    },1000);
-    
+        loadCoffees(buildUrl(latitude, longitude));
+    }, 1000);
+
+});
+//changing width of input field on focusin or focusout
+$("#place-input").on('focus', function () {
+    if (!$("#place-input-container").hasClass("expanded")) {
+        $("#place-input-container").addClass("expanded");
+        console.log("focusin");
+    }
+});
+$("#place-input").on('blur', function () {
+    if ($("#place-input-container").hasClass("expanded")) {
+        $("#place-input-container").removeClass("expanded");
+        console.log("focusout");
+    }
 });

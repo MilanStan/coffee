@@ -7,8 +7,8 @@
             height: $cup-height-m;
         }
     }
-    .main-content-wrapper{
-        background-image:url("../img/coffee-bg-lg.jpg");
+    .main-content-wrapper {
+        background-image: url("../img/coffee-bg-lg.jpg");
     }
     .data-container {
         padding-top: 20px;
@@ -90,8 +90,8 @@
             font-size: 30px;
         }
     }
-    .main-content-wrapper{
-        background-image:url(../img/coffee-bg-md.jpg);
+    .main-content-wrapper {
+        background-image: url(../img/coffee-bg-md.jpg);
     }
     .list {
         font-size: 24px;
@@ -122,10 +122,19 @@
     }
 }
 
+#map-picker-container .map-picker-wrapper #place-input-container.expanded {
+    width: 70%;
+}
+
+@media only screen and(max-width:699px) {
+    #map-picker-container .map-picker-wrapper .map-name {
+        margin-top: 20px;
+    }
+}
+
 @media only screen and(max-width:499px) {
     header {
-        background-image:url("../img/background-lighter-sm.jpg");
-        
+        background-image: url("../img/background-lighter-sm.jpg");
         #intro {
             h1 {
                 font-size: 33px;
@@ -137,13 +146,13 @@
             }
         }
     }
-    .main-content-wrapper{
-        background-image:none;
+    .main-content-wrapper {
+        background-image: none;
         background-color: rgb(242, 218, 197);
-        padding:50px 0;
+        padding: 50px 0;
     }
-    #content-wrapper{
-        padding:0 20px;
+    #content-wrapper {
+        padding: 0 20px;
     }
     .item-wrapper {
         background-image: none;
@@ -155,9 +164,13 @@
     .data-container {
         padding: 0;
         text-align: center;
-        .name{
-            margin-top:20px;
-            font-size:20px;
+        .name {
+            margin-top: 20px;
+            font-size: 20px;
         }
+    }
+    #map-picker-container .map-picker-wrapper #place-input-container.expanded {
+        width: 100%;
+        z-index:100 !important;
     }
 }

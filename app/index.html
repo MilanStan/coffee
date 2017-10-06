@@ -47,21 +47,22 @@
             <div id="map"></div>
         </div>
     </section>
-    <section id="map-picker-container">        
-        <div id="map-pick">            
+    <section id="map-picker-container">
+        <div class="map-picker-wrapper">
+            <h4 class="map-name">Enter and pick your location or drag marker</h4>
+            <div id="map-pick">
+            </div>
+            <div id="place-input-container">
+                <input id="place-input" type="text" placeholder="Enter a location">
+            </div>
+            </div>
+            <div id="infowindow-content">
+                <img src="" width="16" height="16" id="place-icon">
+                <span id="place-name" class="title"></span><br>
+                <span id="place-address"></span>
+            </div>
+            <button id="lat-lon-submit" class="btn button">Send</button>
         </div>
-        <div id="map-picker-text-wrapper">
-                <h4 class="map-name">Pick or drag your location!</h4>
-                <div id="place-input-container">
-                    <input id="place-input" type="text" placeholder="Enter a location">
-                </div>
-        </div>
-        <div id="infowindow-content">
-            <img src="" width="16" height="16" id="place-icon">
-            <span id="place-name" class="title"></span><br>
-            <span id="place-address"></span>
-        </div>
-        <button id="lat-lon-submit" class="btn button">Send</button>
     </section>
 
     <script type="text/template" id="item-container">
