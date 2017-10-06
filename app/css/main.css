@@ -492,10 +492,9 @@ header {
       background-position: 100% 100%; }
   .data-container {
     padding-top: 0;
-    padding-right: 120px; } }
-
-#map-picker-container .map-picker-wrapper #place-input-container.expanded {
-  width: 70%; }
+    padding-right: 120px; }
+  #map-picker-container .map-picker-wrapper #place-input-container.expanded {
+    width: 70%; } }
 
 @media only screen and (max-width: 699px) {
   #map-picker-container .map-picker-wrapper .map-name {

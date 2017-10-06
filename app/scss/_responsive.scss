@@ -120,10 +120,9 @@
         padding-top: 0;
         padding-right: 120px;
     }
-}
-
-#map-picker-container .map-picker-wrapper #place-input-container.expanded {
-    width: 70%;
+    #map-picker-container .map-picker-wrapper #place-input-container.expanded {
+        width: 70%;
+    }
 }
 
 @media only screen and(max-width:699px) {
@@ -171,6 +170,6 @@
     }
     #map-picker-container .map-picker-wrapper #place-input-container.expanded {
         width: 100%;
-        z-index:100 !important;
+        z-index: 100 !important;
     }
 }
