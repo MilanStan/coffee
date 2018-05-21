@@ -15,7 +15,7 @@
     <header>
         <div id="intro">
             <h1>My Coffee Shop</h1>
-            <h2>Find the nearest coffee shop and relax</h2>
+            <h2>Find the nearest coffee shop</h2>
             <p id="loading">Locating <span>.</span><span>.</span><span>.</span></p>
         </div>
         <div id="cup1"></div>
@@ -46,13 +46,13 @@
     </section>
     <section id="map-picker-container">
         <div class="map-picker-wrapper">
-            <h4 class="map-name">Enter and pick your location or drag marker</h4>
+            <h4 class="map-name">Set your location</h4>
             <div id="map-pick">
             </div>
             <div id="place-input-container">
-                <input id="place-input" type="text" placeholder="Enter a location">
+                <input id="place-input" type="text" placeholder="Type and pick your location">
             </div>
-            <button id="lat-lon-submit" class="btn button">Send</button>
+            <button id="lat-lon-submit" class="btn button">Go!</button>            
         </div>
         <div id="infowindow-content">
             <img src="" width="16" height="16" id="place-icon">
@@ -66,7 +66,7 @@
         <div class="col-md-6 item-wrapper">
 
             <div class="row item-content">
-                <div class="col-sm-5 image-container">
+                <div class="col-sm-5 image-container loading">
                     {{#venue.featuredPhotos}}
                     <a href="#" data-featherlight={{{venue.featuredPhotos.items.0.prefix}}}original{{{venue.featuredPhotos.items.0.suffix}}}>
                         <img src="{{{venue.featuredPhotos.items.0.prefix}}}500x500{{{venue.featuredPhotos.items.0.suffix}}}" alt="{{venue.name}}">

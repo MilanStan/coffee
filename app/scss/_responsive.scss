@@ -130,7 +130,9 @@
 
 @media only screen and(max-width:699px) {
     #map-picker-container .map-picker-wrapper .map-name {
-        margin-top: 20px;
+        //margin-top: 20px;
+        //font-size:16px;
+        padding: 0 30px;
     }
 }
 

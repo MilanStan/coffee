@@ -518,7 +518,7 @@ header {
 
 @media only screen and (max-width: 699px) {
   #map-picker-container .map-picker-wrapper .map-name {
-    margin-top: 20px; } }
+    padding: 0 30px; } }
 
 @media only screen and (max-width: 499px) {
   header {

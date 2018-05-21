@@ -480,8 +480,11 @@ function chooseLocation() {
         }
         marker.setPosition(place.geometry.location);
         marker.setVisible(true);
+        //moje
         console.log("Izabrana lokacija");
         setCoorLoad();
+        //animate button od drag move
+        $('#lat-lon-submit').addClass('animated');
     });
 
     function setCoorLoad() {
