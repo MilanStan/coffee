@@ -53,9 +53,9 @@
             <div id="map-pick">
             </div>
             <div id="place-input-container">
-                <input id="place-input" type="text" placeholder="Enter a location">
+                <input id="place-input" type="text" placeholder="Type address and drag marker">
             </div>
-            <button id="lat-lon-submit" class="btn button">Send</button>
+            <button id="lat-lon-submit" class="btn button">Go!</button>            
         </div>
         <div id="infowindow-content">
             <img src="" width="16" height="16" id="place-icon">
@@ -69,7 +69,7 @@
         <div class="col-md-6 item-wrapper">
 
             <div class="row item-content">
-                <div class="col-sm-5 image-container">
+                <div class="col-sm-5 image-container loading">
                     {{#venue.featuredPhotos}}
                     <a href="#" data-featherlight={{{venue.featuredPhotos.items.0.prefix}}}original{{{venue.featuredPhotos.items.0.suffix}}}>
                         <img src="{{{venue.featuredPhotos.items.0.prefix}}}500x500{{{venue.featuredPhotos.items.0.suffix}}}" alt="{{venue.name}}">

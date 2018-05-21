@@ -6,7 +6,7 @@
         position: relative;
         transition: 1.5s;
         transition-timing-function: ease-out;
-        overflow:hidden; //bitno da pri animaciji ne bi mrdala background slika zbog promene dimenzija
+        overflow: hidden; //bitno da pri animaciji ne bi mrdala background slika zbog promene dimenzija
         #intro {
             @include vertical-align();
             text-align: center;
@@ -148,12 +148,14 @@
     .image-container {
         padding: 0;
         position: relative;
-        background-image: url(../img/loader-icon.svg);
-        background-size: 120px 120px;
-        background-position: center;
-        background-repeat: no-repeat;
         min-width: 120px;
         min-height: 120px;
+        &.loading {
+            background-image: url(../img/loader-icon.svg);
+            background-size: 120px 120px;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
         &:hover .image-icon {
             opacity: 1;
         }
@@ -395,6 +397,21 @@
                 margin-bottom: 20px;
                 text-transform: uppercase;
                 letter-spacing: 2px; //border: 2px solid white;
+                outline: 5px solid transparent; //rgba($coffee-color,0.8);
+                &.animated {
+                    animation: outlineFlicker 1.2s linear infinite;
+                }
             }
+        }
+    }
+
+    @keyframes outlineFlicker {
+        0% {
+            outline-offset: -3px;
+            outline-color: rgba($coffee-color, 0.8);
+        }
+        100% {
+            outline-offset: 7px;
+            outline-color: transparent;
         }
     }

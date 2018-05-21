@@ -321,7 +321,8 @@ function imageLoadingAnimation() {
     $(".image-container img").css("visibility", "hidden");
 
     $(".image-container img").on('load', function () {
-
+        console.log(this.parentElement);
+        $(this).parent().parent().removeClass('loading');
         $(this).css("visibility", "visible");
         $(".image-container a").featherlight();
 
@@ -441,6 +442,8 @@ function chooseLocation() {
         //console.log(this.getPosition().lng().toFixed(6));
         setCoorLoad();
         console.log("Pomeren je marker");
+        //animate button od drag move
+        $('#lat-lon-submit').addClass('animated');
     });
     //auto complete input text
     var input = document.getElementById('place-input');
@@ -495,6 +498,7 @@ $("#lat-lon-submit").click(function () {
             $("#map-picker-container").css("display", "none");
         },2000);
     });
+    $('#lat-lon-submit').removeClass('animated');
     $("#content-wrapper").addClass("loading");
     setTimeout(function () {
         introTransform();

@@ -186,12 +186,13 @@ header {
 .image-container {
   padding: 0;
   position: relative;
-  background-image: url(../img/loader-icon.svg);
-  background-size: 120px 120px;
-  background-position: center;
-  background-repeat: no-repeat;
   min-width: 120px;
   min-height: 120px; }
+  .image-container.loading {
+    background-image: url(../img/loader-icon.svg);
+    background-size: 120px 120px;
+    background-position: center;
+    background-repeat: no-repeat; }
   .image-container:hover .image-icon {
     opacity: 1; }
   .image-container .image-icon {
@@ -407,7 +408,18 @@ header {
       color: white;
       margin-bottom: 20px;
       text-transform: uppercase;
-      letter-spacing: 2px; }
+      letter-spacing: 2px;
+      outline: 5px solid transparent; }
+      #map-picker-container .map-picker-wrapper #lat-lon-submit.animated {
+        animation: outlineFlicker 1.2s linear infinite; }
+
+@keyframes outlineFlicker {
+  0% {
+    outline-offset: -3px;
+    outline-color: rgba(72, 28, 22, 0.8); }
+  100% {
+    outline-offset: 7px;
+    outline-color: transparent; } }
 
 @media only screen and (max-width: 1199px) {
   header {
