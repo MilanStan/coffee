@@ -80,7 +80,7 @@
         background: url(../img/coffee-bg.jpg) no-repeat right bottom;
         background-attachment: fixed;
         background-size: cover;
-        padding: 50px 0 100px;
+        padding: 50px 0 80px;//bilo 100px
         min-height: 93vh;
         display: none;
     }
@@ -404,6 +404,16 @@
             }
         }
     }
+    footer{
+        background-color:rgb(72, 28, 22);
+        color:#963a2e;
+        text-shadow: 1px 0 0 #f1d8c3, 0 1px 0 #f1d8c3, -1px 0 0 #f1d8c3, 0 -1px 0 #f1d8c3, 0 0 10px black;
+        font-weight:bold;
+        font-size:16px;
+        font-family:'Kaushan Script', cursive;
+        padding:10px 0;
+        text-align:center;
+    }
 
     @keyframes outlineFlicker {
         0% {
@@ -415,3 +425,4 @@
             outline-color: transparent;
         }
     }
+    
